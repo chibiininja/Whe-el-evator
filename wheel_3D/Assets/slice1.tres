@@ -1,0 +1,41 @@
+[gd_resource type="ArrayMesh" load_steps=3 format=4 uid="uid://chispifwbnu7w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mkibf"]
+resource_name = "slice"
+cull_mode = 2
+albedo_color = Color(0.906643, 0.739077, 0.236407, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5ixfo"]
+_surfaces = [{
+"aabb": AABB(-0.276287, 0.02705, 0.15, 0.552574, 0.388696, 0.2),
+"format": 34359742465,
+"index_count": 108,
+"index_data": PackedByteArray("AQAJAAgAAQAAAAkAAgAIAAoAAgABAAgAAwAKAAsAAwACAAoABgANAA4ABgAFAA0ABwAOAA8ABwAGAA4AAAAPAAkAAAAHAA8AEwAMABAAEwAEAAwAAgAAAAEAAAAGAAcABgARAAUAEQAQAAwAEAACAAMAAgAGAAAABgAQABEABgACABAACQAKAAgACgATAAsAEwASAAQAEgAOAA0ADgAJAA8ACQATAAoAEwAOABIAEwAJAA4ABAARAAwABAASABEABQASAA0ABQARABIAEAALABMAEAADAAsA"),
+"lods": [0.145345, PackedByteArray("AgAGAA4AEAACAA4AEAAOABMABgASAA4ABgARABIAEwAMABAAEwAEAAwAEQAQAAwABgAQABEABgACABAAEwASAAQAEwAOABIABAARAAwABAASABEA")],
+"name": "slice",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("IryeM67c1D40M7M+9Z+fPX3u0D40M7M+wY4cPphKxT40M7M+TkljPoVjsj40M7M+/LoEtfqX3TydmRk+RkljvoZjsj40M7M+uI4cvpxKxT40M7M+4Z+fvX/u0D40M7M+9Z+fPX3u0D6dmRk+5fqYM67c1D6dmRk+wY4cPphKxT6dmRk+TkljPoVjsj6cmRk+/PoCtfKX3Tw1M7M+RkljvoZjsj6cmRk+uI4cvpxKxT6dmRk+4Z+fvX/u0D6dmRk+g3WNPpSPmz40M7M+f3WNvpiPmz40M7M+f3WNvpePmz6cmRk+g3WNPpSPmz6cmRk+")
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "slice_1_Cylinder_009"
+_surfaces = [{
+"aabb": AABB(-0.276287, 0.02705, 0.15, 0.552574, 0.388696, 0.2),
+"attribute_data": PackedByteArray("AgCAPk/oDj8CAIA+T+gOP64nkz7K2Q8/rieTPsrZDz/lkqU+96QSP+WSpT73pBI/d4y2PlkuFz93jLY+WS4XP8BqIjy/Enw/wGoiPL8SfD8AAAAAAACAPxDnEj5ZLhc/EOcSPlkuFz852jQ+9qQSPznaND72pBI/qrBZPsrZDz+qsFk+ytkPP64nkz7K2Q8/rieTPsrZDz8CAIA+T+gOPwIAgD5P6A4/5ZKlPvekEj/lkqU+96QSP3eMtj5ZLhc/d4y2PlkuFz/IaiI8vxJ8PwAAAAAAAIA/AAAAAAAAgD8Q5xI+WS4XPxDnEj5ZLhc/Odo0PvakEj852jQ+9qQSP6qwWT7K2Q8/qrBZPsrZDz985sM+5KgcP3zmwz7kqBw/fObDPuSoHD8WZvA94qgcPxZm8D3iqBw/AAAAAAAAgD8WZvA94qgcPwAAAAAAAIA/AAAAAAAAgD985sM+5KgcP3zmwz7kqBw/fObDPuSoHD852jQ+9qQSPw=="),
+"format": 34359742487,
+"index_count": 108,
+"index_data": PackedByteArray("AwAUABIAAwABABQABQASABYABQADABIABwAWABgABwAFABYADgAdAB8ADgAMAB0AEAAfACEAEAAOAB8AAQAhABQAAQAQACEALQAaACQALQAJABoABAAAAAIAAAANAA8ADQAlAAsAJQAiABkAIgAEAAYABAANAAAADQAiACUADQAEACIAEwAVABEAFQArABcAKwAoAAgAKAAeABwAHgATACAAEwArABUAKwAeACgAKwATAB4ACgAnABsACgAqACcADAApAB0ADAAmACkAIwAYACwAIwAHABgA"),
+"lods": [0.145345, PackedByteArray("BQAOAC4AIwAFAC4AIwAuACwADgApAC4ADgAmACkALQAaACQALQAJABoAJQAiABkADQAiACUADQAEACIAKwAoAAgAKwAeACgACgAnABsACgAqACcA")],
+"material": SubResource("StandardMaterial3D_mkibf"),
+"name": "slice",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 47,
+"vertex_data": PackedByteArray("IryeM67c1D40M7M+IryeM67c1D40M7M+9Z+fPX3u0D40M7M+9Z+fPX3u0D40M7M+wY4cPphKxT40M7M+wY4cPphKxT40M7M+TkljPoVjsj40M7M+TkljPoVjsj40M7M+/LoEtfqX3TydmRk+/LoEtfqX3TydmRk+/LoEtfqX3TydmRk+RkljvoZjsj40M7M+RkljvoZjsj40M7M+uI4cvpxKxT40M7M+uI4cvpxKxT40M7M+4Z+fvX/u0D40M7M+4Z+fvX/u0D40M7M+9Z+fPX3u0D6dmRk+9Z+fPX3u0D6dmRk+5fqYM67c1D6dmRk+5fqYM67c1D6dmRk+wY4cPphKxT6dmRk+wY4cPphKxT6dmRk+TkljPoVjsj6cmRk+TkljPoVjsj6cmRk+/PoCtfKX3Tw1M7M+/PoCtfKX3Tw1M7M+/PoCtfKX3Tw1M7M+RkljvoZjsj6cmRk+RkljvoZjsj6cmRk+uI4cvpxKxT6dmRk+uI4cvpxKxT6dmRk+4Z+fvX/u0D6dmRk+4Z+fvX/u0D6dmRk+g3WNPpSPmz40M7M+g3WNPpSPmz40M7M+g3WNPpSPmz40M7M+f3WNvpiPmz40M7M+f3WNvpiPmz40M7M+f3WNvpiPmz40M7M+f3WNvpePmz6cmRk+f3WNvpePmz6cmRk+f3WNvpePmz6cmRk+g3WNPpSPmz6cmRk+g3WNPpSPmz6cmRk+g3WNPpSPmz6cmRk+uI4cvpxKxT6dmRk+/3//f////7//f///////v/9//3/+//+/PJXC6v///7//f/9//v//v32lgdr///+//3//f/7//79Es7rM////v/////////8/DcANQIiGuTzxPw1A////v/9//3/+//6/uky6zPXRciL/f/9//v//v4Fagdr///+//3//f/7//7/CasLq////v//////+//8/PJXC6v///7///////v//P/9///////+///////7//z99pYHa////v//////+//8/RLO6zP///7//f/9/////vw3ADUCIhrk88T8NQP///7///////v8AQLpMusz///+///////7//z+BWoHa////v//////+//8/wmrC6v///7//f/9//v//v7G5TMb///+/DcANQP///7//f/9//v//v01GTMYWzJ8f8T8NQP///7///////v//P01GTMYWzJ8f8T8NQP///7///////v//P7G5TMb///+/DcANQIiGuTwDfQL9////vw==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_5ixfo")
