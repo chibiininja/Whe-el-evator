@@ -1,0 +1,512 @@
+[gd_scene load_steps=22 format=3 uid="uid://cg5u7d6x6i1nb"]
+
+[ext_resource type="PackedScene" uid="uid://bah6ef6ew5q3e" path="res://wheel_3D/wheel_3d.tscn" id="1_dmjg0"]
+[ext_resource type="Script" path="res://demo3D.gd" id="1_ve03i"]
+[ext_resource type="PackedScene" uid="uid://bgkg62hqohbiq" path="res://firstpersonplayer/firstpersonplayer.tscn" id="2_7kjbj"]
+[ext_resource type="PackedScene" uid="uid://0fwohcw1ctw2" path="res://elevator/elevator.blend" id="2_xbij3"]
+[ext_resource type="Texture2D" uid="uid://4ul7mlp3o388" path="res://elevator/dark_wood_diff_4k.jpg" id="3_it2ld"]
+[ext_resource type="PackedScene" uid="uid://03uhdvtabg5l" path="res://elevator/Shafts.tscn" id="4_fkni5"]
+[ext_resource type="Texture2D" uid="uid://1cl1src28wao" path="res://the-wheel-godot/Demo/assets/2.png" id="4_fnaxh"]
+[ext_resource type="Texture2D" uid="uid://i2kqoki4thtv" path="res://elevator/dark_wood_disp_4k.png" id="4_yj64y"]
+[ext_resource type="Texture2D" uid="uid://l77pyommmo3y" path="res://the-wheel-godot/Demo/assets/1.png" id="5_lto4c"]
+[ext_resource type="Texture2D" uid="uid://dxt8olqo8uge4" path="res://elevator/dark_wood_nor_gl_4k.jpg" id="5_ow5jf"]
+[ext_resource type="Texture2D" uid="uid://b8hd736mnfase" path="res://elevator/dark_wood_rough_4k.jpg" id="6_8iiqh"]
+[ext_resource type="Texture2D" uid="uid://d01rvjco1og2l" path="res://the-wheel-godot/Demo/assets/-1.png" id="6_yoq57"]
+[ext_resource type="PackedScene" uid="uid://sa0lbm2i85yn" path="res://button/ElevatorPanel.tscn" id="7_1tlfa"]
+[ext_resource type="Texture2D" uid="uid://bm4k7jllmeuqs" path="res://the-wheel-godot/Demo/assets/-2.png" id="7_hay1m"]
+[ext_resource type="Texture2D" uid="uid://dblq8a5cs8ckf" path="res://the-wheel-godot/Demo/assets/pass.jpg" id="8_4njrp"]
+[ext_resource type="Texture2D" uid="uid://bgpcoe8bbgxfs" path="res://the-wheel-godot/Demo/assets/fail.jpg" id="9_tb38v"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_16e7r"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_a5b2k"]
+sky_material = SubResource("ProceduralSkyMaterial_16e7r")
+
+[sub_resource type="Environment" id="Environment_4v7ut"]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_a5b2k")
+ambient_light_sky_contribution = 0.2
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v42qh"]
+albedo_color = Color(0.75, 1, 0.808333, 1)
+albedo_texture = ExtResource("3_it2ld")
+metallic = 0.1
+metallic_specular = 0.2
+roughness = 0.4
+roughness_texture = ExtResource("6_8iiqh")
+normal_enabled = true
+normal_scale = 0.05
+normal_texture = ExtResource("5_ow5jf")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_yj64y")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0e5q"]
+transparency = 1
+albedo_color = Color(0.74902, 0.607843, 0.376471, 1)
+roughness = 0.1
+emission_enabled = true
+emission = Color(0.74902, 0.607843, 0.376471, 1)
+emission_energy_multiplier = 1.3
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_ve03i")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4v7ut")
+
+[node name="ElevatorController" type="Node3D" parent="."]
+
+[node name="Elevator" type="Node3D" parent="ElevatorController"]
+
+[node name="elevator" parent="ElevatorController/Elevator" instance=ExtResource("2_xbij3")]
+
+[node name="car" parent="ElevatorController/Elevator/elevator" index="0"]
+surface_material_override/1 = SubResource("StandardMaterial3D_v42qh")
+
+[node name="bulbs" parent="ElevatorController/Elevator/elevator" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_n0e5q")
+
+[node name="ceiling_lights" type="Node3D" parent="ElevatorController/Elevator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.35, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="ElevatorController/Elevator/ceiling_lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.1, 1)
+light_energy = 0.25
+light_specular = 0.015
+shadow_enabled = true
+shadow_bias = 0.005
+shadow_opacity = 0.65
+omni_range = 6.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="ElevatorController/Elevator/ceiling_lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.1, -1)
+light_energy = 0.25
+light_specular = 0.015
+shadow_enabled = true
+shadow_bias = 0.005
+shadow_opacity = 0.65
+omni_range = 6.0
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="ElevatorController/Elevator/ceiling_lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.1, 1)
+light_energy = 0.25
+light_specular = 0.015
+shadow_enabled = true
+shadow_bias = 0.005
+shadow_opacity = 0.65
+omni_range = 6.0
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="ElevatorController/Elevator/ceiling_lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.1, -1)
+light_energy = 0.25
+light_specular = 0.015
+shadow_enabled = true
+shadow_bias = 0.005
+shadow_opacity = 0.65
+omni_range = 6.0
+
+[node name="ElevatorPanel" parent="ElevatorController" instance=ExtResource("7_1tlfa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85, 1.55, -2.5)
+
+[node name="ElevatorShaft" parent="ElevatorController" instance=ExtResource("4_fkni5")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 4)
+
+[node name="Wheel3D" parent="ElevatorController" instance=ExtResource("1_dmjg0")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 1.875, 1.5, -2.5)
+scaling_tween_type = 1
+base_numbers = Array[int]([-2, -1, 2, 1])
+slice_text = Array[String](["ME", "OUT", "NOW", "LET"])
+
+[node name="FirstPersonPlayer" parent="." instance=ExtResource("2_7kjbj")]
+
+[node name="colors" type="Control" parent="."]
+custom_minimum_size = Vector2(460, 410)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 510.0
+offset_bottom = 460.0
+scale = Vector2(0.5, 0.5)
+
+[node name="2" type="ColorRect" parent="colors"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.427364, 0.683772, 0.538431, 1)
+
+[node name="1" type="ColorRect" parent="colors"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.223047, 0.399887, 0.300187, 1)
+
+[node name="-1" type="ColorRect" parent="colors"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.332238, 0.0281021, 0.0629685, 1)
+
+[node name="-2" type="ColorRect" parent="colors"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.844033, 0.158939, 0.225471, 1)
+
+[node name="values" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 155.0
+offset_top = 142.5
+offset_right = 195.0
+offset_bottom = 182.5
+scale = Vector2(0.5, 0.5)
+
+[node name="2" type="TextureRect" parent="values"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -200.0
+offset_right = 225.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(225, 200)
+texture = ExtResource("4_fnaxh")
+expand_mode = 1
+
+[node name="1" type="TextureRect" parent="values"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -200.0
+offset_right = 225.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(225, 200)
+texture = ExtResource("5_lto4c")
+expand_mode = 1
+
+[node name="-1" type="TextureRect" parent="values"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -200.0
+offset_right = 225.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(225, 200)
+texture = ExtResource("6_yoq57")
+expand_mode = 1
+
+[node name="-2" type="TextureRect" parent="values"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -200.0
+offset_right = 225.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(225, 200)
+texture = ExtResource("7_hay1m")
+expand_mode = 1
+
+[node name="text" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(250, 0)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -255.0
+offset_right = 331.0
+grow_vertical = 0
+alignment = 2
+
+[node name="wheel value" type="Label" parent="text"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "[Slice Value]"
+
+[node name="slice value" type="Label" parent="text"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "[Slice Value]"
+
+[node name="base value" type="Label" parent="text"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "[Base Value]"
+
+[node name="direction" type="Label" parent="text"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "[Base Value]"
+
+[node name="num selections" type="Label" parent="text"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "[selections]"
+
+[node name="value mappings" type="Label" parent="text"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "[value mappings]"
+
+[node name="base values" type="Label" parent="text"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "[base values]"
+
+[node name="slice multipliers" type="Label" parent="text"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "[slice multipliers]"
+
+[node name="debug_checkbox" type="CheckBox" parent="text"]
+layout_mode = 2
+focus_mode = 0
+text = "Show Debug Stats"
+
+[node name="music_checkbox" type="CheckBox" parent="text"]
+layout_mode = 2
+focus_mode = 0
+button_pressed = true
+text = "Background Music"
+
+[node name="instructions" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(250, 0)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -433.0
+offset_top = -255.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="instructions"]
+layout_mode = 2
+
+[node name="inst" type="Label" parent="instructions/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Controls:
+
+WASD: 
+Move Mouse: 
+Left Click: 
+N:
+M:"
+horizontal_alignment = 2
+
+[node name="spacer" type="Label" parent="instructions/HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="inst2" type="Label" parent="instructions/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "
+
+Move player
+Select slices
+Confirm selection on wheel
+Toggle Debug Stats
+Toggle Music"
+
+[node name="game_overs" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="pass" type="Control" parent="game_overs"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="ColorRect" parent="game_overs/pass"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.223529, 0.4, 0.301961, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="game_overs/pass"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -57.0
+offset_top = 69.0
+offset_right = 97.0
+offset_bottom = 102.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+bbcode_enabled = true
+text = "[rainbow][wave]YAAAAY"
+
+[node name="TextureRect" type="TextureRect" parent="game_overs/pass"]
+custom_minimum_size = Vector2(450, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -200.0
+offset_right = 225.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_4njrp")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="game_overs/pass"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -23.985
+offset_right = 4.0
+offset_bottom = -15.985
+grow_horizontal = 2
+grow_vertical = 0
+text = "continue?"
+
+[node name="fail" type="Control" parent="game_overs"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="ColorRect" parent="game_overs/fail"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.333333, 0.027451, 0.0627451, 1)
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="game_overs/fail"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -95.0
+offset_top = 63.0
+offset_right = 59.0
+offset_bottom = 99.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+bbcode_enabled = true
+text = "[wave][color=red]AWWWWW :("
+
+[node name="TextureRect2" type="TextureRect" parent="game_overs/fail"]
+custom_minimum_size = Vector2(450, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -200.0
+offset_right = 225.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_tb38v")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="game_overs/fail"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -23.985
+offset_right = 4.0
+offset_bottom = -15.985
+grow_horizontal = 2
+grow_vertical = 0
+text = "continue?"
+
+[connection signal="toggled" from="text/debug_checkbox" to="." method="_on_debug_checkbox_toggled"]
+[connection signal="toggled" from="text/music_checkbox" to="." method="_on_music_checkbox_toggled"]
+[connection signal="pressed" from="game_overs/pass/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="game_overs/fail/Button" to="." method="_on_button2_pressed"]
+
+[editable path="ElevatorController/Elevator/elevator"]

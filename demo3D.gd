@@ -4,7 +4,7 @@ extends Node3D
 
 
 #region Onready Variables
-@onready var wheel:Wheel3D = $Wheel3D
+@onready var wheel_3d: Wheel3D = $ElevatorController/Wheel3D
 #endregion
 
 #region Internal Variables
@@ -23,11 +23,11 @@ var game_over = false
 #region Built-In Functions
 func _ready():
 	# connects the new dir chosen signal to a lambda function that plays the selector sound 
-	wheel.new_dir_selected.connect(func():if wheel.num_selections != wheel.target_selections: _play_sound(select_sound))
+	wheel_3d.new_dir_selected.connect(func():if wheel_3d.num_selections != wheel_3d.target_selections: _play_sound(select_sound))
 	# connects our new dir chosen signal to the update wheel value function
-	wheel.new_dir_chosen.connect(update_wheel_value)
+	wheel_3d.new_dir_chosen.connect(update_wheel_value)
 	# connects the dir confirmed signal to a lambda function that plays the confirm sound
-	wheel.rotation_started.connect(func():_play_sound(rotate_sound))
+	wheel_3d.rotation_started.connect(func():_play_sound(rotate_sound))
 	# play some tunes :)
 	_play_music(background_music)
 
@@ -35,8 +35,8 @@ func _process(_delta: float) -> void:
 	if game_over: return
 	
 	update_text()
-	show_value(wheel._current_value.base_value)
-	if wheel.num_selections == wheel.target_selections:
+	show_value(wheel_3d._current_value.base_value)
+	if wheel_3d.num_selections == wheel_3d.target_selections:
 		end_check(current_wheel_value)
 	
 	if Input.is_action_just_pressed("debug"):
@@ -62,17 +62,18 @@ func end_check(wheel_val):
 		_play_sound(fail_sound)
 	game_over = true
 	bg_msc.volume_db = -200
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	Global.game_state = Global.GameState.UI
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 # updates our debug labels
 func update_text()->void:
-	var slice = "Slice Value: "+str(wheel._current_value.slice_value)
-	var base = "Base Value: "+str(wheel._current_value.base_value)
-	var direction = "Direction: "+str(wheel.current_direction)
-	var selections = "Number of Selections: "+str(wheel.num_selections)
-	var bases = "Base Values: "+str(wheel.base_numbers)
-	var value_mappings = "Value Mappings: "+str(wheel.current_value_mappings)
-	var slice_multipliers = "Slice Multipliers: "+str(wheel.slice_values)
+	var slice = "Slice Value: "+str(wheel_3d._current_value.slice_value)
+	var base = "Base Value: "+str(wheel_3d._current_value.base_value)
+	var direction = "Direction: "+str(wheel_3d.current_direction)
+	var selections = "Number of Selections: "+str(wheel_3d.num_selections)
+	var bases = "Base Values: "+str(wheel_3d.base_numbers)
+	var value_mappings = "Value Mappings: "+str(wheel_3d.current_value_mappings)
+	var slice_multipliers = "Slice Multipliers: "+str(wheel_3d.slice_values)
 	$"text/wheel value".text = "Wheel value: "+str(current_wheel_value)
 	$"text/slice value".text = slice
 	$"text/base value".text = base
@@ -84,7 +85,7 @@ func update_text()->void:
 	
 # toggles our visible olive picture and background color to indicate base values
 func show_value(base_value)->void:
-	var b = wheel._current_value.base_value
+	var b = wheel_3d._current_value.base_value
 	var olives = $values.get_children()
 	var colors = $colors.get_children()
 	# this assumes that the colors and the values have children in the same order
@@ -142,34 +143,36 @@ func _on_debug_checkbox_toggled(toggled_on: bool) -> void:
 
 
 func _on_button_pressed() -> void:
-	wheel.slice_text = ["YOU WON!", "YIPPEEE!!!", "wanna lose?", "YAAAAYYYYY"]
-	wheel.randomize_slices = false
-	wheel.hide_covers_on_reset = false
-	wheel.covers_covered = [false, true, false, true]
-	wheel.slice_values = [4,4,4,4]
-	wheel.target_selections = 1
-	wheel.base_numbers = [2,2,-2,2]
-	wheel.reset()
+	wheel_3d.slice_text = ["YOU WON!", "YIPPEEE!!!", "wanna lose?", "YAAAAYYYYY"]
+	wheel_3d.randomize_slices = false
+	wheel_3d.hide_covers_on_reset = false
+	wheel_3d.covers_covered = [false, true, false, true]
+	wheel_3d.slice_values = [4,4,4,4]
+	wheel_3d.target_selections = 1
+	wheel_3d.base_numbers = [2,2,-2,2]
+	wheel_3d.reset()
 	current_wheel_value = 0
-	$text/debug_checkbox.toggled.emit($text/debug_checkbox.button_pressed)
+	$text/music_checkbox.toggled.emit($text/music_checkbox.button_pressed)
 	$game_overs/pass.visible = false
 	$game_overs/fail.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Global.game_state = Global.GameState.FirstPerson
 	game_over = false
 
 
 func _on_button2_pressed() -> void:
-	wheel.slice_text = ["wanna win?", "OH NOOOO!!!", "YOU LOSE!", "WAAAHHHH"]
-	wheel.randomize_slices = false
-	wheel.hide_covers_on_reset = false
-	wheel.covers_covered = [false, true, false, true]
-	wheel.slice_values = [1,1,1,1]
-	wheel.target_selections = 1
-	wheel.base_numbers = [2,2,-2,2]
-	wheel.reset()
+	wheel_3d.slice_text = ["wanna win?", "OH NOOOO!!!", "YOU LOSE!", "WAAAHHHH"]
+	wheel_3d.randomize_slices = false
+	wheel_3d.hide_covers_on_reset = false
+	wheel_3d.covers_covered = [false, true, false, true]
+	wheel_3d.slice_values = [1,1,1,1]
+	wheel_3d.target_selections = 1
+	wheel_3d.base_numbers = [2,2,-2,2]
+	wheel_3d.reset()
 	current_wheel_value = 0
-	$text/debug_checkbox.toggled.emit($text/debug_checkbox.button_pressed)
+	$text/music_checkbox.toggled.emit($text/music_checkbox.button_pressed)
 	$game_overs/pass.visible = false
 	$game_overs/fail.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Global.game_state = Global.GameState.FirstPerson
 	game_over = false

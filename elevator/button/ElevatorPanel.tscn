@@ -1,0 +1,248 @@
+[gd_scene load_steps=9 format=3 uid="uid://sa0lbm2i85yn"]
+
+[ext_resource type="Script" uid="uid://dmvb5ayfciip" path="res://elevator/button/elevator_panel.gd" id="1_hucoj"]
+[ext_resource type="PackedScene" uid="uid://dj6wuw23i22k0" path="res://elevator/button/ElevatorButton.tscn" id="1_icath"]
+[ext_resource type="Script" uid="uid://cyvsle26mhblv" path="res://firstpersonplayer/interactable.gd" id="2_hf7ab"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xbe21"]
+size = Vector3(0.8, 0.8, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vfnt"]
+cull_mode = 2
+albedo_color = Color(0.501407, 0.501406, 0.501406, 1)
+metallic = 0.75
+metallic_specular = 0.6
+roughness = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r46n6"]
+margin = 0.1
+size = Vector3(0.8, 0.8, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dy0g6"]
+size = Vector3(0.2, 0.8, 0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w3m58"]
+margin = 0.1
+size = Vector3(0.2, 0.8, 0.05)
+
+[node name="ElevatorPanel" type="Node3D"]
+script = ExtResource("1_hucoj")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.175)
+collision_layer = 4
+collision_mask = 5
+freeze = true
+continuous_cd = true
+script = ExtResource("2_hf7ab")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_xbe21")
+surface_material_override/0 = SubResource("StandardMaterial3D_6vfnt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_r46n6")
+
+[node name="Buttons" type="Node3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.175)
+
+[node name="Button" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.3, -0.3, 0.2)
+
+[node name="Button2" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.15, -0.3, 0.2)
+number = 1
+
+[node name="Button3" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.3, 0.2)
+number = 2
+
+[node name="Button4" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.15, -0.3, 0.2)
+number = 3
+
+[node name="Button5" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.3, -0.3, 0.2)
+number = 4
+
+[node name="Button6" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.3, -0.15, 0.2)
+number = 5
+
+[node name="Button7" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.15, -0.15, 0.2)
+number = 6
+
+[node name="Button8" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.15, 0.2)
+number = 7
+
+[node name="Button9" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.15, -0.15, 0.2)
+number = 8
+
+[node name="Button10" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.3, -0.15, 0.2)
+number = 9
+
+[node name="Button11" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.3, 7.45058e-09, 0.2)
+number = 10
+
+[node name="Button12" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.15, 7.45058e-09, 0.2)
+number = 11
+
+[node name="Button13" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 7.45058e-09, 0.2)
+number = 12
+
+[node name="Button14" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.15, 7.45058e-09, 0.2)
+number = 13
+
+[node name="Button15" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.3, 7.45058e-09, 0.2)
+number = 14
+
+[node name="Button16" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.3, 0.15, 0.2)
+number = 15
+
+[node name="Button17" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.15, 0.15, 0.2)
+number = 16
+
+[node name="Button18" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.15, 0.2)
+number = 17
+
+[node name="Button19" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.15, 0.15, 0.2)
+number = 18
+
+[node name="Button20" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.3, 0.15, 0.2)
+number = 19
+
+[node name="Button21" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.3, 0.3, 0.2)
+number = 20
+
+[node name="Button22" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.15, 0.3, 0.2)
+number = 21
+
+[node name="Button23" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.3, 0.2)
+number = 22
+
+[node name="Button24" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.15, 0.3, 0.2)
+number = 23
+
+[node name="Button25" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.3, 0.3, 0.2)
+number = 24
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 0, 0)
+collision_layer = 4
+collision_mask = 5
+freeze = true
+continuous_cd = true
+script = ExtResource("2_hf7ab")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="RigidBody3D2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.1)
+mesh = SubResource("BoxMesh_dy0g6")
+skeleton = NodePath("../../RigidBody3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_6vfnt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RigidBody3D2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.1)
+shape = SubResource("BoxShape3D_w3m58")
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0.375, 0, 0)
+collision_layer = 4
+collision_mask = 5
+freeze = true
+continuous_cd = true
+script = ExtResource("2_hf7ab")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="RigidBody3D3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 3.27836e-08, 0.1)
+mesh = SubResource("BoxMesh_dy0g6")
+skeleton = NodePath("../../RigidBody3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_6vfnt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RigidBody3D3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 3.27836e-08, 0.1)
+shape = SubResource("BoxShape3D_w3m58")
+
+[node name="RigidBody3D4" type="RigidBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, 0, -0.375, 0)
+collision_layer = 4
+collision_mask = 5
+freeze = true
+continuous_cd = true
+script = ExtResource("2_hf7ab")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="RigidBody3D4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 4.91752e-08, 0.1)
+mesh = SubResource("BoxMesh_dy0g6")
+skeleton = NodePath("../../RigidBody3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_6vfnt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RigidBody3D4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 4.91752e-08, 0.1)
+shape = SubResource("BoxShape3D_w3m58")
+
+[node name="RigidBody3D5" type="RigidBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-2.18557e-07, 1, 0, -1, -2.18557e-07, 0, 0, 0, 1, 0, 0.375, 0)
+collision_layer = 4
+collision_mask = 5
+freeze = true
+continuous_cd = true
+script = ExtResource("2_hf7ab")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="RigidBody3D5"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 8.19589e-08, 0.1)
+mesh = SubResource("BoxMesh_dy0g6")
+skeleton = NodePath("../../RigidBody3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_6vfnt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RigidBody3D5"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 8.19589e-08, 0.1)
+shape = SubResource("BoxShape3D_w3m58")

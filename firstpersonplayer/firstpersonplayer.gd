@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 const EYE_HEIGHT_STAND = 1.5
 const EYE_HEIGHT_CROUCH = 0.75
@@ -8,16 +8,22 @@ const MOVEMENT_SPEED_AIR = 0.11
 const MOVEMENT_SPEED_CROUCH_MODIFIER = 0.5
 const MOVEMENT_FRICTION_GROUND = 0.9
 const MOVEMENT_FRICTION_AIR = 0.98
-const JUMP_POWER = 4.5
+const JUMP_POWER = 4.75
 
 var _mouse_motion = Vector2()
 var _prev_interactable: Interactable
 
 var _crouch_counter: float = 0
 
+var picked_object: RigidBody3D
+var pull_power: float = 4.0
+
 @onready var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var ray_cast_3d: RayCast3D = $Camera3D/RayCast3D
 @onready var camera: Node3D = $HeadPosition
+@onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var hand: Marker3D = $Camera3D/hand
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -27,10 +33,16 @@ func _process(_delta):
 	_mouse_motion.y = clamp(_mouse_motion.y, -1560, 1560)
 	transform.basis = Basis.from_euler(Vector3(0, _mouse_motion.x * -0.001, 0))
 	camera.transform.basis = Basis.from_euler(Vector3(_mouse_motion.y * -0.001, 0, 0))
+	
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED and Global.game_state == Global.GameState.FirstPerson:
+		$MouseCaptureLabel.visible = true
+	else:
+		$MouseCaptureLabel.visible = false
 
 func _physics_process(delta: float) -> void:
 	HandleMovement(delta)
 	HandleRaycast()
+	HandlePickup()
 
 func HandleMovement(delta: float):
 	# Keyboard movement.
@@ -41,6 +53,8 @@ func HandleMovement(delta: float):
 		_crouch_counter -= delta
 	_crouch_counter = clampf(_crouch_counter, 0, 0.5)
 	camera.transform.origin.y = lerpf(camera.transform.origin.y, EYE_HEIGHT_CROUCH if crouching else EYE_HEIGHT_STAND, _crouch_counter)
+	mesh_instance_3d.mesh.height = lerpf(mesh_instance_3d.mesh.height, 1 if crouching else 2, _crouch_counter)
+	mesh_instance_3d.transform.origin.y = lerpf(mesh_instance_3d.transform.origin.y, 0.5 if crouching else 1.0, _crouch_counter)
 
 	var movement_vec2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var movement = transform.basis * (Vector3(movement_vec2.x, 0, movement_vec2.y))
@@ -80,7 +94,31 @@ func HandleRaycast():
 		_prev_interactable.on_ray_exited.emit()
 		_prev_interactable = null
 
+func HandlePickup():
+	if Input.is_action_just_pressed("interact"):
+		if picked_object == null:
+			pick_object()
+		elif picked_object != null:
+			release_object()
+	
+	if picked_object != null:
+		var a = picked_object.global_transform.origin
+		var b = hand.global_transform.origin
+		picked_object.linear_velocity = ((b-a)*pull_power)
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			_mouse_motion += event.relative
+
+func camera_shake(anim_name: String):
+	animation_player.play(anim_name)
+
+func pick_object():
+	var collider = ray_cast_3d.get_collider()
+	if collider != null and collider is Interactable and collider.can_grab:
+		picked_object = collider
+
+func release_object():
+	if picked_object != null:
+		picked_object = null

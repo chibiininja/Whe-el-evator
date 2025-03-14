@@ -1,0 +1,155 @@
+[gd_scene load_steps=11 format=3 uid="uid://cey3q43isglsu"]
+
+[ext_resource type="Script" uid="uid://cn2pvccrw58y0" path="res://elevator/display/elevator_display.gd" id="1_0n37q"]
+[ext_resource type="FontFile" uid="uid://blgc5m5e1mio8" path="res://depixel_font/DePixelKlein.ttf" id="2_q78pe"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0n37q"]
+size = Vector3(0.8, 0.6, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0n37q"]
+cull_mode = 2
+albedo_color = Color(0.501407, 0.501406, 0.501406, 1)
+metallic = 0.75
+metallic_specular = 0.6
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_q78pe"]
+size = Vector3(0.8, 0.025, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fa21i"]
+size = Vector3(0.025, 0.6, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1acs7"]
+size = Vector3(0.025, 0.24, 0.05)
+
+[sub_resource type="QuadMesh" id="QuadMesh_nbugw"]
+size = Vector2(0.75, 0.55)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q78pe"]
+transparency = 1
+albedo_color = Color(0.15, 0.15, 0.15, 0.89)
+metallic = 0.5
+roughness = 0.7
+emission_enabled = true
+emission = Color(0, 0.0666667, 0, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1acs7"]
+size = Vector3(0.8, 0.6, 0.2)
+
+[node name="ElevatorDisplay" type="Node3D"]
+script = ExtResource("1_0n37q")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_mask = 6
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.075)
+mesh = SubResource("BoxMesh_0n37q")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n37q")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2875, 0.175)
+mesh = SubResource("BoxMesh_q78pe")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n37q")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2875, 0.175)
+mesh = SubResource("BoxMesh_q78pe")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n37q")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0.175)
+mesh = SubResource("BoxMesh_q78pe")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n37q")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3875, 2.98023e-08, 0.175)
+mesh = SubResource("BoxMesh_fa21i")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n37q")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3875, 2.98023e-08, 0.175)
+mesh = SubResource("BoxMesh_fa21i")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n37q")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.21072e-08, -0.15724, 0.175)
+mesh = SubResource("BoxMesh_1acs7")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n37q")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1625)
+mesh = SubResource("QuadMesh_nbugw")
+surface_material_override/0 = SubResource("StandardMaterial3D_q78pe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+shape = SubResource("BoxShape3D_1acs7")
+debug_fill = false
+
+[node name="TargetLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0125, 0.1625)
+shaded = true
+texture_filter = 2
+render_priority = 1
+modulate = Color(0, 0.721569, 0, 1)
+text = "TARGET"
+font = ExtResource("2_q78pe")
+font_size = 9
+outline_size = 0
+
+[node name="TargetNumber" type="Label3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0.025, 0.1375, 0.1625)
+shaded = true
+texture_filter = 2
+render_priority = 1
+modulate = Color(0, 0.721569, 0, 1)
+text = "0"
+font = ExtResource("2_q78pe")
+font_size = 9
+outline_size = 0
+
+[node name="CurrentLabel" type="Label3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -0.2, -0.2625, 0.1625)
+shaded = true
+texture_filter = 2
+render_priority = 1
+modulate = Color(0, 0.721569, 0, 1)
+text = "CURRENT"
+font = ExtResource("2_q78pe")
+font_size = 9
+outline_size = 0
+
+[node name="CurrentNumber" type="Label3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.175, -0.1625, 0.1625)
+shaded = true
+texture_filter = 2
+render_priority = 1
+modulate = Color(0, 0.721569, 0, 1)
+text = "0"
+font = ExtResource("2_q78pe")
+font_size = 9
+outline_size = 0
+
+[node name="ResultLabel" type="Label3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.1995, -0.263, 0.162)
+shaded = true
+texture_filter = 2
+render_priority = 1
+modulate = Color(0, 0.721569, 0, 1)
+text = "RESULT"
+font = ExtResource("2_q78pe")
+font_size = 9
+outline_size = 0
+
+[node name="ResultNumber" type="Label3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0.225, -0.1625, 0.1625)
+shaded = true
+texture_filter = 2
+render_priority = 1
+modulate = Color(0, 0.721569, 0, 1)
+text = "0"
+font = ExtResource("2_q78pe")
+font_size = 9
+outline_size = 0

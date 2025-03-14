@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ynmfrkjnnm6r"]
 
-[ext_resource type="Script" path="res://the-wheel-godot/wheel.gd" id="1_jnbfk"]
+[ext_resource type="Script" uid="uid://dvnsxd1tybuwf" path="res://the-wheel-godot/wheel.gd" id="1_jnbfk"]
 [ext_resource type="Texture2D" uid="uid://bgsngvx2gvemu" path="res://the-wheel-godot/Assets/wheel-simple/slice1.png" id="2_hflln"]
 [ext_resource type="Texture2D" uid="uid://do6nve628fj42" path="res://the-wheel-godot/Assets/wheel-simple/slice2.png" id="3_tc8cr"]
 [ext_resource type="Texture2D" uid="uid://mcjmi4bhyyfd" path="res://the-wheel-godot/Assets/wheel-simple/slice3.png" id="4_lnuxd"]

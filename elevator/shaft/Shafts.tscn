@@ -1,0 +1,546 @@
+[gd_scene load_steps=21 format=3 uid="uid://03uhdvtabg5l"]
+
+[ext_resource type="PackedScene" uid="uid://de1ghhudb3cqb" path="res://elevator/shaft/shaft.blend" id="1_efsvb"]
+[ext_resource type="Script" uid="uid://c6wdv4ht3acu2" path="res://elevator/shaft/elevator_shaft.gd" id="1_spwwc"]
+[ext_resource type="Texture2D" uid="uid://7ovmoab21ey0" path="res://elevator/shaft/rock_01_diff_4k.jpg" id="3_fclcp"]
+[ext_resource type="Texture2D" uid="uid://2dr1vk3s2aor" path="res://elevator/shaft/rock_01_disp_4k.png" id="4_yba71"]
+[ext_resource type="Texture2D" uid="uid://bvqlll2alfhfi" path="res://elevator/shaft/rock_01_nor_gl_4k.jpg" id="5_xcegn"]
+[ext_resource type="Texture2D" uid="uid://dqrhr36vstdb" path="res://elevator/shaft/rock_01_rough_4k.jpg" id="6_vsle8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_betxk"]
+albedo_texture = ExtResource("3_fclcp")
+roughness_texture = ExtResource("6_vsle8")
+normal_enabled = true
+normal_scale = 0.0
+normal_texture = ExtResource("5_xcegn")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_yba71")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nmulk"]
+transparency = 1
+albedo_color = Color(0.74902, 0.607843, 0.376471, 1)
+roughness = 0.1
+emission_enabled = true
+emission = Color(0.74902, 0.607843, 0.376471, 1)
+emission_energy_multiplier = 2.25
+
+[sub_resource type="Animation" id="Animation_tlo0x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shaft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 7.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shaft2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shaft3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -7.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xibmu"]
+resource_name = "scroll_fall"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shaft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(4, 4),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 7.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shaft2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(4, 4),
+"update": 0,
+"values": [Vector3(0, -7.5, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shaft3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(4, 4),
+"update": 0,
+"values": [Vector3(0, -15, 0), Vector3(0, -7.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vujo3"]
+resource_name = "scroll_fall_end"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shaft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(0.25, 0.25),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 7.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shaft2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(0.25, 0.25),
+"update": 0,
+"values": [Vector3(0, -7.5, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shaft3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(0.25, 0.25),
+"update": 0,
+"values": [Vector3(0, -15, 0), Vector3(0, -7.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a8ii8"]
+resource_name = "scroll_loop"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shaft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 7.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shaft2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -7.5, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shaft3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -15, 0), Vector3(0, -7.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kjpoc"]
+resource_name = "scroll_rise"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shaft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(4, 4),
+"update": 0,
+"values": [Vector3(0, 7.5, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shaft2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(4, 4),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -7.5, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shaft3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(4, 4),
+"update": 0,
+"values": [Vector3(0, -7.5, 0), Vector3(0, -15, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_63tyu"]
+resource_name = "scroll_rise_end"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shaft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(0.25, 0.25),
+"update": 0,
+"values": [Vector3(0, 7.5, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shaft2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(0.25, 0.25),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -7.5, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shaft3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(0.25, 0.25),
+"update": 0,
+"values": [Vector3(0, -7.5, 0), Vector3(0, -15, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xcweg"]
+resource_name = "shake"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shaft:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -15, 0), Vector3(0, -15.1, 0), Vector3(0, -14.75, 0), Vector3(0, -15.25, 0), Vector3(0, -14.9, 0), Vector3(0, -15, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shaft2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0.25, 0), Vector3(0, -0.25, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shaft3:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -7.5, 0), Vector3(0, -7.6, 0), Vector3(0, -7.25, 0), Vector3(0, -7.75, 0), Vector3(0, -7.4, 0), Vector3(0, -7.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hehem"]
+resource_name = "shake_fall"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shaft:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -15, 0), Vector3(0, -15.25, 0), Vector3(0, -14.75, 0), Vector3(0, -15.1, 0), Vector3(0, -14.9, 0), Vector3(0, -15, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shaft2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.25, 0), Vector3(0, 0.25, 0), Vector3(0, -0.1, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shaft3:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -7.5, 0), Vector3(0, -7.75, 0), Vector3(0, -7.25, 0), Vector3(0, -7.6, 0), Vector3(0, -7.4, 0), Vector3(0, -7.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gotsb"]
+resource_name = "shake_rise"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shaft:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -15, 0), Vector3(0, -14.75, 0), Vector3(0, -15.25, 0), Vector3(0, -14.9, 0), Vector3(0, -15.1, 0), Vector3(0, -15, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shaft2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.25, 0), Vector3(0, -0.25, 0), Vector3(0, 0.1, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shaft3:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -7.5, 0), Vector3(0, -7.25, 0), Vector3(0, -7.75, 0), Vector3(0, -7.4, 0), Vector3(0, -7.6, 0), Vector3(0, -7.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mmb6j"]
+resource_name = "scroll"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shaft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 7.5, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shaft2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -7.5, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shaft3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -7.5, 0), Vector3(0, -15, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jexed"]
+resource_name = "scroll_once"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shaft:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4),
+"transitions": PackedFloat32Array(2, 0.5, 2),
+"update": 0,
+"values": [Vector3(0, 7.5, 0), Vector3(0, 3.75, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shaft2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4),
+"transitions": PackedFloat32Array(2, 0.5, 2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -3.75, 0), Vector3(0, -7.5, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shaft3:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4),
+"transitions": PackedFloat32Array(2, 0.5, 2),
+"update": 0,
+"values": [Vector3(0, -7.5, 0), Vector3(0, -11.25, 0), Vector3(0, -15, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hufxo"]
+_data = {
+&"RESET": SubResource("Animation_tlo0x"),
+&"scroll": SubResource("Animation_mmb6j"),
+&"scroll_fall": SubResource("Animation_xibmu"),
+&"scroll_fall_end": SubResource("Animation_vujo3"),
+&"scroll_loop": SubResource("Animation_a8ii8"),
+&"scroll_once": SubResource("Animation_jexed"),
+&"scroll_rise": SubResource("Animation_kjpoc"),
+&"scroll_rise_end": SubResource("Animation_63tyu"),
+&"shake": SubResource("Animation_xcweg"),
+&"shake_fall": SubResource("Animation_hehem"),
+&"shake_rise": SubResource("Animation_gotsb")
+}
+
+[node name="ElevatorShaft" type="Node3D"]
+script = ExtResource("1_spwwc")
+
+[node name="shaft" parent="." instance=ExtResource("1_efsvb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 0)
+
+[node name="Cube" parent="shaft" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_betxk")
+
+[node name="Sphere" parent="shaft" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_nmulk")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="shaft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.75)
+light_color = Color(0.75, 0.60625, 0.375, 1)
+light_energy = 2.0
+shadow_enabled = true
+shadow_bias = 0.005
+shadow_opacity = 0.65
+omni_range = 7.0
+
+[node name="shaft2" parent="." instance=ExtResource("1_efsvb")]
+
+[node name="Cube" parent="shaft2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_betxk")
+
+[node name="Sphere" parent="shaft2" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_nmulk")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="shaft2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.75)
+light_color = Color(0.75, 0.60625, 0.375, 1)
+light_energy = 2.0
+shadow_enabled = true
+shadow_bias = 0.005
+shadow_opacity = 0.65
+omni_range = 7.0
+
+[node name="shaft3" parent="." instance=ExtResource("1_efsvb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 0)
+
+[node name="Cube" parent="shaft3" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_betxk")
+
+[node name="Sphere" parent="shaft3" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_nmulk")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="shaft3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.75)
+light_color = Color(0.75, 0.60625, 0.375, 1)
+light_energy = 2.0
+shadow_enabled = true
+shadow_bias = 0.005
+shadow_opacity = 0.65
+omni_range = 7.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hufxo")
+}
+blend_times = [&"scroll", &"scroll", 0.005, &"scroll", &"scroll_fall", 0.005, &"scroll", &"scroll_fall_end", 0.005, &"scroll", &"scroll_loop", 0.005, &"scroll", &"scroll_once", 0.005, &"scroll", &"scroll_rise", 0.005, &"scroll", &"scroll_rise_end", 0.005, &"scroll", &"shake", 0.005, &"scroll", &"shake_fall", 0.005, &"scroll", &"shake_rise", 0.005]
+
+[editable path="shaft"]
+[editable path="shaft2"]
+[editable path="shaft3"]

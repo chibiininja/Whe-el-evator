@@ -1,12 +1,12 @@
 [gd_scene load_steps=28 format=4 uid="uid://bah6ef6ew5q3e"]
 
-[ext_resource type="Script" path="res://wheel_3D/wheel_3d.gd" id="1_kr2tu"]
+[ext_resource type="Script" uid="uid://butiowqle4bdr" path="res://wheel_3D/wheel_3d.gd" id="1_kr2tu"]
 [ext_resource type="ArrayMesh" uid="uid://chispifwbnu7w" path="res://wheel_3D/Assets/slice1.tres" id="2_rwyt1"]
-[ext_resource type="Shader" path="res://wheel_3D/text_bend.gdshader" id="2_yexcl"]
+[ext_resource type="Shader" uid="uid://c0wl4hautdq4w" path="res://wheel_3D/text_bend.gdshader" id="2_yexcl"]
 [ext_resource type="ArrayMesh" uid="uid://dod1g5vu1vd43" path="res://wheel_3D/Assets/slice2.tres" id="3_gb5s3"]
 [ext_resource type="ArrayMesh" uid="uid://dgflsbdl75acx" path="res://wheel_3D/Assets/slice3.tres" id="4_cahfb"]
 [ext_resource type="ArrayMesh" uid="uid://b8f33gf3xo11k" path="res://wheel_3D/Assets/slice4.tres" id="5_kfewe"]
-[ext_resource type="Script" path="res://firstpersonplayer/interactable.gd" id="6_7o48c"]
+[ext_resource type="Script" uid="uid://cyvsle26mhblv" path="res://firstpersonplayer/interactable.gd" id="6_7o48c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7kicj"]
 resource_name = "regular"
@@ -161,10 +161,10 @@ shader = ExtResource("2_yexcl")
 shader_parameter/curve_down = true
 
 [sub_resource type="TextMesh" id="TextMesh_x14t3"]
-text = "UP"
+text = "ME"
 
 [sub_resource type="TextMesh" id="TextMesh_3gajk"]
-text = "RIGHT"
+text = "OUT"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_54t8r"]
 render_priority = 0
@@ -172,10 +172,10 @@ shader = ExtResource("2_yexcl")
 shader_parameter/curve_down = false
 
 [sub_resource type="TextMesh" id="TextMesh_keto4"]
-text = "DOWN"
+text = "NOW"
 
 [sub_resource type="TextMesh" id="TextMesh_o4i6w"]
-text = "LEFT"
+text = "LET"
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_boa4c"]
 _surfaces = [{
@@ -218,13 +218,13 @@ data = PackedVector3Array(0.3822, 0.9228, 0.5, 0, 0.9988, 0.5, 0.1949, 0.9796, 0
 script = ExtResource("1_kr2tu")
 scaling_tween_type = 9
 scaling_anim_time = 0.2
-base_numbers = Array[int]([2, -2, -1, 1])
+base_numbers = Array[int]([2, -2, 1, -1])
 
 [node name="wheel" type="Node3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="base" type="MeshInstance3D" parent="wheel"]
 mesh = SubResource("ArrayMesh_6giqf")
-skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="wheel/base"]
 collision_mask = 2
@@ -296,32 +296,32 @@ skeleton = NodePath("")
 
 [node name="slice1" type="MeshInstance3D" parent="wheel/slice_gimbal"]
 unique_name_in_owner = true
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
 mesh = ExtResource("2_rwyt1")
 
 [node name="slice2" type="MeshInstance3D" parent="wheel/slice_gimbal"]
 unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = ExtResource("3_gb5s3")
 
 [node name="slice3" type="MeshInstance3D" parent="wheel/slice_gimbal"]
 unique_name_in_owner = true
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = ExtResource("4_cahfb")
 
 [node name="slice4" type="MeshInstance3D" parent="wheel/slice_gimbal"]
 unique_name_in_owner = true
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = ExtResource("5_kfewe")
 
 [node name="selector" type="Node3D" parent="wheel"]
 unique_name_in_owner = true
 
-[node name="OmniLight3D" type="OmniLight3D" parent="wheel/selector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.4)
-light_energy = 0.2
+[node name="SpotLight3D" type="SpotLight3D" parent="wheel/selector"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.47641)
 shadow_enabled = true
 shadow_bias = 0.005
-omni_range = 1.0
+spot_range = 0.35
+spot_angle_attenuation = 2.0
 
 [node name="areas" type="Node3D" parent="wheel"]
 
