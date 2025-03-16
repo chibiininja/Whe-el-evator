@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=3 uid="uid://b8j2qtk8apxsa"]
+
+[ext_resource type="Script" uid="uid://jxb3ntrr1y6q" path="res://elevator/display/controls_display.gd" id="1_q4mdf"]
+[ext_resource type="Script" uid="uid://cyvsle26mhblv" path="res://firstpersonplayer/interactable.gd" id="2_h5wn6"]
+[ext_resource type="FontFile" uid="uid://blgc5m5e1mio8" path="res://fonts/depixel_font/DePixelKlein.ttf" id="2_wj1x8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0n37q"]
+size = Vector3(0.8, 0.438, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0n37q"]
+cull_mode = 2
+albedo_color = Color(0.501407, 0.501406, 0.501406, 1)
+metallic = 0.75
+metallic_specular = 0.6
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_q78pe"]
+size = Vector3(0.8, 0.025, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fa21i"]
+size = Vector3(0.025, 0.425, 0.05)
+
+[sub_resource type="QuadMesh" id="QuadMesh_nbugw"]
+size = Vector2(0.75, 0.405)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q78pe"]
+transparency = 1
+albedo_color = Color(0.15, 0.15, 0.15, 0.89)
+metallic = 0.5
+roughness = 0.7
+emission_enabled = true
+emission = Color(0, 0.0666667, 0, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1acs7"]
+size = Vector3(0.8, 0.4375, 0.2)
+
+[node name="ControlsDisplay" type="Node3D"]
+script = ExtResource("1_q4mdf")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 4
+collision_mask = 5
+freeze = true
+script = ExtResource("2_h5wn6")
+can_grab = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.080864, 0.075)
+mesh = SubResource("BoxMesh_0n37q")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n37q")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2875, 0.175)
+mesh = SubResource("BoxMesh_q78pe")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n37q")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0.175)
+mesh = SubResource("BoxMesh_q78pe")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n37q")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3875, 0.0875, 0.175)
+mesh = SubResource("BoxMesh_fa21i")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n37q")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3875, 0.0875, 0.175)
+mesh = SubResource("BoxMesh_fa21i")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n37q")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0875, 0.1875)
+mesh = SubResource("QuadMesh_nbugw")
+surface_material_override/0 = SubResource("StandardMaterial3D_q78pe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08075, 0.1)
+shape = SubResource("BoxShape3D_1acs7")
+debug_fill = false
+
+[node name="Controls" type="Label3D" parent="RigidBody3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.075, 0.1875)
+shaded = true
+texture_filter = 0
+render_priority = 1
+modulate = Color(0, 0.721569, 0, 1)
+text = "WASD - Move
+SPACE - Jump
+SHIFT - Crouch
+LMB - Interact"
+font = ExtResource("2_wj1x8")
+font_size = 44
+outline_size = 0

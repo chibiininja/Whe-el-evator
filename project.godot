@@ -82,13 +82,9 @@ music={
 [physics]
 
 3d/physics_engine="Jolt Physics"
-3d/time_before_sleep=0.1
-3d/physics_jitter_fix=0.0
-3d/physics_ticks_per_second=120
+3d/size/mode=3
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-lights_and_shadows/positional_shadow/soft_shadow_filter_quality=4
-lights_and_shadows/positional_shadow/atlas_size=9192

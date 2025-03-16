@@ -1,0 +1,262 @@
+[gd_scene load_steps=26 format=3 uid="uid://uvme68hgpq11"]
+
+[ext_resource type="Script" uid="uid://cgxdcgdpae4ik" path="res://npc/crash_npc.gd" id="1_vx53w"]
+[ext_resource type="Script" uid="uid://cyvsle26mhblv" path="res://firstpersonplayer/interactable.gd" id="2_wqlxo"]
+[ext_resource type="Script" uid="uid://cglk15bn08ht1" path="res://npc/blink.gd" id="3_ifvjs"]
+[ext_resource type="PackedScene" uid="uid://c31nbjty2lku3" path="res://npc/dialogue_bubble.tscn" id="4_tdfla"]
+[ext_resource type="Texture2D" uid="uid://bc0w8sliibyxq" path="res://npc/noise.tres" id="5_dxskx"]
+[ext_resource type="PackedScene" uid="uid://dp1wiqa5a7poq" path="res://npc/gun.blend" id="5_wqlxo"]
+[ext_resource type="AudioStream" uid="uid://dhbl5sqwtnpx8" path="res://audio/reload2.wav" id="6_ifvjs"]
+[ext_resource type="AudioStream" uid="uid://wraosaao0k3h" path="res://audio/gunshot.wav" id="7_tdfla"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_v7lw1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldo70"]
+albedo_color = Color(0.0962047, 0.0962048, 0.0962047, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xxcha"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3i1kj"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6cys"]
+cull_mode = 2
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ldo70"]
+size = Vector2(0.25, 0.1)
+
+[sub_resource type="Animation" id="Animation_fnhme"]
+resource_name = "blink"
+length = 0.3333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody3D/eyes/eye:mesh")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("PlaneMesh_ldo70")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody3D/eyes/eye2:mesh")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("PlaneMesh_ldo70")]
+}
+
+[sub_resource type="Animation" id="Animation_o6cys"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody3D/eyes/eye:mesh")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CylinderMesh_3i1kj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody3D/eyes/eye2:mesh")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CylinderMesh_3i1kj")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uamtn"]
+_data = {
+&"blink": SubResource("Animation_fnhme"),
+&"idle": SubResource("Animation_o6cys")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ocili"]
+animation = &"blink"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_phifv"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wuxkc"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_m62cl"]
+graph_offset = Vector2(-455.914, 28.7067)
+nodes/blink/node = SubResource("AnimationNodeAnimation_ocili")
+nodes/blink/position = Vector2(-160, 220)
+nodes/blink_oneshot/node = SubResource("AnimationNodeOneShot_phifv")
+nodes/blink_oneshot/position = Vector2(-20, 60)
+nodes/idle/node = SubResource("AnimationNodeAnimation_wuxkc")
+nodes/idle/position = Vector2(-160, 60)
+node_connections = [&"blink_oneshot", 0, &"idle", &"blink_oneshot", 1, &"blink", &"output", 0, &"blink_oneshot"]
+
+[sub_resource type="Animation" id="Animation_tdfla"]
+resource_name = "reveal"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun/head:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(1.0472, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gun/load")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_gun_signal"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wg1ag"]
+_data = {
+&"reveal": SubResource("Animation_tdfla")
+}
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ifvjs"]
+size = Vector2(4, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdfla"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 5.0
+
+[node name="CrashNPC" type="Node3D"]
+script = ExtResource("1_vx53w")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 5
+collision_mask = 6
+script = ExtResource("2_wqlxo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_v7lw1")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ldo70")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_xxcha")
+
+[node name="eyes" type="Node3D" parent="StaticBody3D"]
+script = ExtResource("3_ifvjs")
+
+[node name="eye" type="MeshInstance3D" parent="StaticBody3D/eyes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.225, 1.6625, 0.525)
+mesh = SubResource("CylinderMesh_3i1kj")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_o6cys")
+
+[node name="eye2" type="MeshInstance3D" parent="StaticBody3D/eyes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.225, 1.663, 0.525)
+mesh = SubResource("CylinderMesh_3i1kj")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_o6cys")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StaticBody3D/eyes"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_uamtn")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="StaticBody3D/eyes"]
+root_node = NodePath("../../..")
+tree_root = SubResource("AnimationNodeBlendTree_m62cl")
+anim_player = NodePath("../AnimationPlayer")
+parameters/blink_oneshot/active = false
+parameters/blink_oneshot/internal_active = false
+parameters/blink_oneshot/request = 0
+
+[node name="Timer" type="Timer" parent="StaticBody3D/eyes"]
+
+[node name="DialogueBubble" parent="." instance=ExtResource("4_tdfla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+visible = false
+letter_delay = 0.075
+base_pitch = 0.5
+
+[node name="Sprite3D" parent="DialogueBubble" index="0"]
+texture = ExtResource("5_dxskx")
+
+[node name="Label3D" parent="DialogueBubble/Sprite3D" index="0"]
+render_priority = 6
+outline_render_priority = 5
+modulate = Color(1, 1, 1, 1)
+outline_modulate = Color(0, 0, 0, 1)
+
+[node name="gun" parent="." instance=ExtResource("5_wqlxo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.512, 1.15, 0.45)
+visible = false
+
+[node name="head" parent="gun" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.499998, -0.866027, 0, 0.866027, 0.499998, 0, 0.0675744, 0.189256)
+
+[node name="GunAnimationPlayer" type="AnimationPlayer" parent="gun"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_wg1ag")
+}
+
+[node name="load" type="AudioStreamPlayer3D" parent="gun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0.525)
+stream = ExtResource("6_ifvjs")
+volume_db = -20.0
+
+[node name="flash" type="MeshInstance3D" parent="gun"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.175, 0.8125)
+visible = false
+mesh = SubResource("PlaneMesh_ifvjs")
+surface_material_override/0 = SubResource("StandardMaterial3D_tdfla")
+
+[node name="gunshot" type="AudioStreamPlayer3D" parent="gun"]
+stream = ExtResource("7_tdfla")
+volume_db = -20.0
+
+[editable path="DialogueBubble"]
+[editable path="gun"]

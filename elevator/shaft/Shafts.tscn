@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://03uhdvtabg5l"]
+[gd_scene load_steps=27 format=3 uid="uid://03uhdvtabg5l"]
 
 [ext_resource type="PackedScene" uid="uid://de1ghhudb3cqb" path="res://elevator/shaft/shaft.blend" id="1_efsvb"]
 [ext_resource type="Script" uid="uid://c6wdv4ht3acu2" path="res://elevator/shaft/elevator_shaft.gd" id="1_spwwc"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://2dr1vk3s2aor" path="res://elevator/shaft/rock_01_disp_4k.png" id="4_yba71"]
 [ext_resource type="Texture2D" uid="uid://bvqlll2alfhfi" path="res://elevator/shaft/rock_01_nor_gl_4k.jpg" id="5_xcegn"]
 [ext_resource type="Texture2D" uid="uid://dqrhr36vstdb" path="res://elevator/shaft/rock_01_rough_4k.jpg" id="6_vsle8"]
+[ext_resource type="AudioStream" uid="uid://26ddt8gmbo07" path="res://audio/elevator-going.wav" id="7_y2co8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_betxk"]
 albedo_texture = ExtResource("3_fclcp")
@@ -17,6 +18,22 @@ heightmap_enabled = true
 heightmap_texture = ExtResource("4_yba71")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nmulk"]
+transparency = 1
+albedo_color = Color(0.74902, 0.607843, 0.376471, 1)
+roughness = 0.1
+emission_enabled = true
+emission = Color(0.74902, 0.607843, 0.376471, 1)
+emission_energy_multiplier = 2.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0hea"]
+transparency = 1
+albedo_color = Color(0.74902, 0.607843, 0.376471, 1)
+roughness = 0.1
+emission_enabled = true
+emission = Color(0.74902, 0.607843, 0.376471, 1)
+emission_energy_multiplier = 2.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2co8"]
 transparency = 1
 albedo_color = Color(0.74902, 0.607843, 0.376471, 1)
 roughness = 0.1
@@ -61,6 +78,46 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, -7.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mmb6j"]
+resource_name = "scroll"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shaft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 7.5, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shaft2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -7.5, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shaft3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -7.5, 0), Vector3(0, -15, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_xibmu"]
@@ -182,6 +239,60 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, -15, 0), Vector3(0, -7.5, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_decrement_current_floor"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_jexed"]
+resource_name = "scroll_once"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shaft:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4),
+"transitions": PackedFloat32Array(2, 0.5, 2),
+"update": 0,
+"values": [Vector3(0, 7.5, 0), Vector3(0, 3.75, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shaft2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4),
+"transitions": PackedFloat32Array(2, 0.5, 2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -3.75, 0), Vector3(0, -7.5, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shaft3:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4),
+"transitions": PackedFloat32Array(2, 0.5, 2),
+"update": 0,
+"values": [Vector3(0, -7.5, 0), Vector3(0, -11.25, 0), Vector3(0, -15, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_kjpoc"]
@@ -384,86 +495,6 @@ tracks/2/keys = {
 "values": [Vector3(0, -7.5, 0), Vector3(0, -7.25, 0), Vector3(0, -7.75, 0), Vector3(0, -7.4, 0), Vector3(0, -7.6, 0), Vector3(0, -7.5, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_mmb6j"]
-resource_name = "scroll"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("shaft:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 7.5, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("shaft2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -7.5, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("shaft3:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, -7.5, 0), Vector3(0, -15, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_jexed"]
-resource_name = "scroll_once"
-length = 1.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("shaft:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.4),
-"transitions": PackedFloat32Array(2, 0.5, 2),
-"update": 0,
-"values": [Vector3(0, 7.5, 0), Vector3(0, 3.75, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("shaft2:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.4),
-"transitions": PackedFloat32Array(2, 0.5, 2),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -3.75, 0), Vector3(0, -7.5, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("shaft3:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.4),
-"transitions": PackedFloat32Array(2, 0.5, 2),
-"update": 0,
-"values": [Vector3(0, -7.5, 0), Vector3(0, -11.25, 0), Vector3(0, -15, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hufxo"]
 _data = {
 &"RESET": SubResource("Animation_tlo0x"),
@@ -477,6 +508,164 @@ _data = {
 &"shake": SubResource("Animation_xcweg"),
 &"shake_fall": SubResource("Animation_hehem"),
 &"shake_rise": SubResource("Animation_gotsb")
+}
+
+[sub_resource type="Animation" id="Animation_jwu2r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shaft/OmniLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shaft2/OmniLight3D2:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shaft3/OmniLight3D2:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("shaft/Sphere:surface_material_override/0:emission_energy_multiplier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.25]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("shaft2/Sphere:surface_material_override/0:emission_energy_multiplier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.25]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("shaft3/Sphere:surface_material_override/0:emission_energy_multiplier")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.25]
+}
+
+[sub_resource type="Animation" id="Animation_otn5d"]
+resource_name = "flicker"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shaft/OmniLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.6, 1.3, 1.7, 2.2, 2.4, 2.6, 2.8, 3.3, 3.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2.0, 0.125, 2.0, 0.125, 2.0, 0.125, 2.0, 0.125, 2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shaft2/OmniLight3D2:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9, 1.2, 1.4, 1.6, 1.8, 3.1, 3.5, 4.2, 4.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2.0, 0.125, 2.0, 0.125, 2.0, 0.125, 2.0, 0.125, 2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shaft3/OmniLight3D2:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6, 1, 2.8, 3, 3.2, 3.4, 4, 4.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2.0, 0.125, 2.0, 0.125, 2.0, 0.125, 2.0, 0.125, 2.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("shaft/Sphere:surface_material_override/0:emission_energy_multiplier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6, 1.3, 1.7, 2.2, 2.4, 2.6, 2.8, 3.3, 3.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2.25, 0.25, 2.25, 0.25, 2.25, 0.25, 2.25, 0.25, 2.25]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("shaft2/Sphere:surface_material_override/0:emission_energy_multiplier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.9, 1.2, 1.4, 1.6, 1.8, 3.1, 3.5, 4.2, 4.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2.25, 0.25, 2.25, 0.25, 2.25, 0.25, 2.25, 0.25, 2.25]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("shaft3/Sphere:surface_material_override/0:emission_energy_multiplier")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.3, 0.6, 1, 2.8, 3, 3.2, 3.4, 4, 4.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2.25, 0.25, 2.25, 0.25, 2.25, 0.25, 2.25, 0.25, 2.25]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sua0i"]
+_data = {
+&"RESET": SubResource("Animation_jwu2r"),
+&"flicker": SubResource("Animation_otn5d")
 }
 
 [node name="ElevatorShaft" type="Node3D"]
@@ -506,7 +695,7 @@ omni_range = 7.0
 surface_material_override/0 = SubResource("StandardMaterial3D_betxk")
 
 [node name="Sphere" parent="shaft2" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_nmulk")
+surface_material_override/0 = SubResource("StandardMaterial3D_v0hea")
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="shaft2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.75)
@@ -524,7 +713,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_betxk")
 
 [node name="Sphere" parent="shaft3" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_nmulk")
+surface_material_override/0 = SubResource("StandardMaterial3D_y2co8")
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="shaft3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.75)
@@ -540,6 +729,16 @@ libraries = {
 &"": SubResource("AnimationLibrary_hufxo")
 }
 blend_times = [&"scroll", &"scroll", 0.005, &"scroll", &"scroll_fall", 0.005, &"scroll", &"scroll_fall_end", 0.005, &"scroll", &"scroll_loop", 0.005, &"scroll", &"scroll_once", 0.005, &"scroll", &"scroll_rise", 0.005, &"scroll", &"scroll_rise_end", 0.005, &"scroll", &"shake", 0.005, &"scroll", &"shake_fall", 0.005, &"scroll", &"shake_rise", 0.005]
+
+[node name="LightAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sua0i")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1.25)
+stream = ExtResource("7_y2co8")
+volume_db = -20.0
 
 [editable path="shaft"]
 [editable path="shaft2"]

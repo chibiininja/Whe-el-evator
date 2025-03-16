@@ -1,6 +1,7 @@
 shader_type spatial;
 
 uniform bool curve_down = true;
+uniform vec4 albedo_color: source_color = vec4(1.0);
 
 void vertex() {
 	float vertical_shift = cos(VERTEX.x) - 1.0;
@@ -15,7 +16,8 @@ void vertex() {
 }
 
 void fragment() {
-	// Called for every pixel the material is visible on.
+	ALBEDO = albedo_color.rgb;
+	ALBEDO *= COLOR.rgb;
 }
 
 //void light() {

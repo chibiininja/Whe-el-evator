@@ -1,0 +1,749 @@
+[gd_scene load_steps=41 format=3 uid="uid://cg5u7d6x6i1nb"]
+
+[ext_resource type="PackedScene" uid="uid://bah6ef6ew5q3e" path="res://wheel_3D/wheel_3d.tscn" id="1_dmjg0"]
+[ext_resource type="Script" uid="uid://b7wp0ktkus141" path="res://main.gd" id="1_w48qg"]
+[ext_resource type="PackedScene" uid="uid://bgkg62hqohbiq" path="res://firstpersonplayer/firstpersonplayer.tscn" id="2_7kjbj"]
+[ext_resource type="PackedScene" uid="uid://0fwohcw1ctw2" path="res://elevator/elevator/elevator.blend" id="2_xbij3"]
+[ext_resource type="Script" uid="uid://cwt872kws3v60" path="res://elevator/elevator_controller.gd" id="2_yaehf"]
+[ext_resource type="Texture2D" uid="uid://4ul7mlp3o388" path="res://elevator/elevator/dark_wood_diff_4k.jpg" id="3_it2ld"]
+[ext_resource type="PackedScene" uid="uid://03uhdvtabg5l" path="res://elevator/shaft/Shafts.tscn" id="4_fkni5"]
+[ext_resource type="Texture2D" uid="uid://i2kqoki4thtv" path="res://elevator/elevator/dark_wood_disp_4k.png" id="4_yj64y"]
+[ext_resource type="Texture2D" uid="uid://dxt8olqo8uge4" path="res://elevator/elevator/dark_wood_nor_gl_4k.jpg" id="5_ow5jf"]
+[ext_resource type="Texture2D" uid="uid://b8hd736mnfase" path="res://elevator/elevator/dark_wood_rough_4k.jpg" id="6_8iiqh"]
+[ext_resource type="PackedScene" uid="uid://sa0lbm2i85yn" path="res://elevator/button/ElevatorPanel.tscn" id="7_1tlfa"]
+[ext_resource type="Texture2D" uid="uid://bbupw1llpu4i1" path="res://elevator/lobby.jpg" id="7_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://cey3q43isglsu" path="res://elevator/display/elevator_display.tscn" id="9_074og"]
+[ext_resource type="PackedScene" uid="uid://ck8nybm8mjduv" path="res://elevator/display/headline_display.tscn" id="12_dg77c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_16e7r"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_a5b2k"]
+sky_material = SubResource("ProceduralSkyMaterial_16e7r")
+
+[sub_resource type="Environment" id="Environment_4v7ut"]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_a5b2k")
+ambient_light_sky_contribution = 0.2
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v42qh"]
+albedo_color = Color(0.75, 1, 0.808333, 1)
+albedo_texture = ExtResource("3_it2ld")
+metallic = 0.1
+metallic_specular = 0.2
+roughness = 0.4
+roughness_texture = ExtResource("6_8iiqh")
+normal_enabled = true
+normal_scale = 0.05
+normal_texture = ExtResource("5_ow5jf")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_yj64y")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_33r5t"]
+size = Vector3(7, 1, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jupjm"]
+size = Vector3(7, 1, 5.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0e5q"]
+transparency = 1
+albedo_color = Color(0.74902, 0.607843, 0.376471, 1)
+roughness = 0.1
+emission_enabled = true
+emission = Color(0.74902, 0.607843, 0.376471, 1)
+emission_energy_multiplier = 1.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dg77c"]
+transparency = 1
+albedo_color = Color(0.74902, 0.607843, 0.376471, 1)
+roughness = 0.1
+emission_enabled = true
+emission = Color(0.74902, 0.607843, 0.376471, 1)
+emission_energy_multiplier = 1.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycdy4"]
+transparency = 1
+albedo_color = Color(0.74902, 0.607843, 0.376471, 1)
+roughness = 0.1
+emission_enabled = true
+emission = Color(0.74902, 0.607843, 0.376471, 1)
+emission_energy_multiplier = 1.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w48qg"]
+transparency = 1
+albedo_color = Color(0.74902, 0.607843, 0.376471, 1)
+roughness = 0.1
+emission_enabled = true
+emission = Color(0.74902, 0.607843, 0.376471, 1)
+emission_energy_multiplier = 1.3
+
+[sub_resource type="QuadMesh" id="QuadMesh_dg77c"]
+size = Vector2(2.5, 2.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vivmo"]
+albedo_texture = ExtResource("7_ycdy4")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ycdy4"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w48qg"]
+seamless = true
+noise = SubResource("FastNoiseLite_ycdy4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cqfq"]
+albedo_color = Color(0.435294, 0, 1, 1)
+albedo_texture = SubResource("NoiseTexture2D_w48qg")
+uv1_offset = Vector3(1, 0.5, 0)
+
+[sub_resource type="Animation" id="Animation_cegan"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:surface_material_override/0:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 0.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:surface_material_override/0:albedo_texture:noise:fractal_lacunarity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:surface_material_override/0:albedo_texture:noise:fractal_gain")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:surface_material_override/0:albedo_texture:noise:fractal_weighted_strength")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_074og"]
+resource_name = "slide"
+length = 4.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:surface_material_override/0:uv1_offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.03333, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.5, 0.5, 0), Vector3(0, 1, 0), Vector3(0.5, 1.5, 0), Vector3(0, 2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:surface_material_override/0:albedo_texture:noise:fractal_lacunarity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.0, 3.0, 2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:surface_material_override/0:albedo_texture:noise:fractal_gain")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.5, 0.2, 0.5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:surface_material_override/0:albedo_texture:noise:fractal_weighted_strength")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.5, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_82xsv"]
+_data = {
+&"RESET": SubResource("Animation_cegan"),
+&"slide": SubResource("Animation_074og")
+}
+
+[sub_resource type="Animation" id="Animation_2cqfq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ceiling_lights/OmniLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.25]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ceiling_lights/OmniLight3D2:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.25]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ceiling_lights/OmniLight3D3:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.25]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ceiling_lights/OmniLight3D4:light_energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.25]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("elevator/bulbs_001:surface_material_override/0:emission_energy_multiplier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("elevator/bulbs_002:surface_material_override/0:emission_energy_multiplier")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.3]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("elevator/bulbs:surface_material_override/0:emission_energy_multiplier")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.3]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("elevator/bulbs_003:surface_material_override/0:emission_energy_multiplier")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.3]
+}
+
+[sub_resource type="Animation" id="Animation_vivmo"]
+resource_name = "flicker"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ceiling_lights/OmniLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.9, 1.6, 1.7, 1.8, 1.9, 2.7, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ceiling_lights/OmniLight3D2:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 2.2, 2.4, 3.3, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ceiling_lights/OmniLight3D3:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 2.5, 2.6, 2.7, 2.8, 3.7, 3.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ceiling_lights/OmniLight3D4:light_energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 1.1, 1.2, 1.3, 1.9, 2, 3.2, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("elevator/bulbs_001:surface_material_override/0:emission_energy_multiplier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.9, 1.6, 1.7, 1.8, 1.9, 2.7, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("elevator/bulbs_002:surface_material_override/0:emission_energy_multiplier")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 2.2, 2.4, 3.3, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("elevator/bulbs:surface_material_override/0:emission_energy_multiplier")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 2.5, 2.6, 2.7, 2.8, 3.7, 3.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("elevator/bulbs_003:surface_material_override/0:emission_energy_multiplier")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1, 1.1, 1.2, 1.3, 1.9, 2, 3.2, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3]
+}
+
+[sub_resource type="Animation" id="Animation_dg77c"]
+resource_name = "flicker_crash"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ceiling_lights/OmniLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.1, 1.6, 1.8, 2, 2.2, 2.7, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ceiling_lights/OmniLight3D2:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.7, 0.9, 2.2, 2.6, 3.3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ceiling_lights/OmniLight3D3:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 2.5, 2.7, 2.9, 3.1, 3.7, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ceiling_lights/OmniLight3D4:light_energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 1.2, 1.4, 1.6, 1.9, 2.2, 3.2, 3.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25, 0.125, 0.25]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("elevator/bulbs_001:surface_material_override/0:emission_energy_multiplier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.1, 1.6, 1.8, 2, 2.2, 2.7, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("elevator/bulbs_002:surface_material_override/0:emission_energy_multiplier")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.7, 0.9, 2.2, 2.6, 3.3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("elevator/bulbs:surface_material_override/0:emission_energy_multiplier")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 2.5, 2.7, 2.9, 3.1, 3.7, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("elevator/bulbs_003:surface_material_override/0:emission_energy_multiplier")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1, 1.2, 1.4, 1.6, 1.9, 2.2, 3.2, 3.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3, 0.65, 1.3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yaehf"]
+_data = {
+&"RESET": SubResource("Animation_2cqfq"),
+&"flicker": SubResource("Animation_vivmo"),
+&"flicker_crash": SubResource("Animation_dg77c")
+}
+
+[sub_resource type="Animation" id="Animation_w48qg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("elevator/door_l:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("elevator/door_r:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yaehf"]
+resource_name = "close"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("elevator/door_l:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(3, 0.5, 3),
+"update": 0,
+"values": [Vector3(-1.25, 0, 0), Vector3(-1.07567, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("elevator/door_r:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(3, 0.5, 3),
+"update": 0,
+"values": [Vector3(1.25, 0, 0), Vector3(1.076, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ycdy4"]
+resource_name = "open"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("elevator/door_l:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(3, 0.5, 3),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.07567, 0, 0), Vector3(-1.25, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("elevator/door_r:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(3, 0.5, 3),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.076, 0, 0), Vector3(1.25, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_074og"]
+_data = {
+&"RESET": SubResource("Animation_w48qg"),
+&"close": SubResource("Animation_yaehf"),
+&"open": SubResource("Animation_ycdy4")
+}
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_w48qg")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4v7ut")
+
+[node name="ElevatorController" type="Node3D" parent="."]
+script = ExtResource("2_yaehf")
+
+[node name="Elevator" type="Node3D" parent="ElevatorController"]
+
+[node name="elevator" parent="ElevatorController/Elevator" instance=ExtResource("2_xbij3")]
+
+[node name="car" parent="ElevatorController/Elevator/elevator" index="0"]
+surface_material_override/1 = SubResource("StandardMaterial3D_v42qh")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="ElevatorController/Elevator/elevator/car" index="0"]
+collision_mask = 6
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ElevatorController/Elevator/elevator/car/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_33r5t")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="ElevatorController/Elevator/elevator/car/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9, 0)
+shape = SubResource("BoxShape3D_33r5t")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="ElevatorController/Elevator/elevator/car/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.7, 3)
+shape = SubResource("BoxShape3D_jupjm")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="ElevatorController/Elevator/elevator/car/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.7, -3)
+shape = SubResource("BoxShape3D_jupjm")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="ElevatorController/Elevator/elevator/car/StaticBody3D2"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 3, 1.7, 0)
+shape = SubResource("BoxShape3D_jupjm")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="ElevatorController/Elevator/elevator/car/StaticBody3D2"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -3, 1.7, 0)
+shape = SubResource("BoxShape3D_jupjm")
+
+[node name="bulbs" parent="ElevatorController/Elevator/elevator" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_n0e5q")
+
+[node name="bulbs_001" parent="ElevatorController/Elevator/elevator" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_dg77c")
+
+[node name="bulbs_002" parent="ElevatorController/Elevator/elevator" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ycdy4")
+
+[node name="bulbs_003" parent="ElevatorController/Elevator/elevator" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_w48qg")
+
+[node name="lobby" type="MeshInstance3D" parent="ElevatorController/Elevator/elevator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -2.625)
+mesh = SubResource("QuadMesh_dg77c")
+surface_material_override/0 = SubResource("StandardMaterial3D_vivmo")
+
+[node name="space" type="MeshInstance3D" parent="ElevatorController/Elevator/elevator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -2.625)
+visible = false
+mesh = SubResource("QuadMesh_dg77c")
+surface_material_override/0 = SubResource("StandardMaterial3D_2cqfq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ElevatorController/Elevator/elevator/space"]
+libraries = {
+&"": SubResource("AnimationLibrary_82xsv")
+}
+autoplay = "slide"
+
+[node name="ceiling_lights" type="Node3D" parent="ElevatorController/Elevator"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.35, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="ElevatorController/Elevator/ceiling_lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.1, 1)
+light_energy = 0.25
+light_specular = 0.015
+shadow_enabled = true
+shadow_bias = 0.005
+shadow_opacity = 0.65
+omni_range = 6.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="ElevatorController/Elevator/ceiling_lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.1, -1)
+light_energy = 0.25
+light_specular = 0.015
+shadow_enabled = true
+shadow_bias = 0.005
+shadow_opacity = 0.65
+omni_range = 6.0
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="ElevatorController/Elevator/ceiling_lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.1, 1)
+light_energy = 0.25
+light_specular = 0.015
+shadow_enabled = true
+shadow_bias = 0.005
+shadow_opacity = 0.65
+omni_range = 6.0
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="ElevatorController/Elevator/ceiling_lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.1, -1)
+light_energy = 0.25
+light_specular = 0.015
+shadow_enabled = true
+shadow_bias = 0.005
+shadow_opacity = 0.65
+omni_range = 6.0
+
+[node name="LightAnimationPlayer" type="AnimationPlayer" parent="ElevatorController/Elevator"]
+libraries = {
+&"": SubResource("AnimationLibrary_yaehf")
+}
+
+[node name="DoorAnimationPlayer" type="AnimationPlayer" parent="ElevatorController/Elevator"]
+libraries = {
+&"": SubResource("AnimationLibrary_074og")
+}
+
+[node name="ElevatorPanel" parent="ElevatorController" instance=ExtResource("7_1tlfa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85, 1.3, -2.5)
+
+[node name="ElevatorDisplay" parent="ElevatorController" instance=ExtResource("9_074og")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85, 2.1, -2.5)
+
+[node name="ElevatorShaft" parent="ElevatorController" instance=ExtResource("4_fkni5")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 4)
+
+[node name="Wheel3D" parent="ElevatorController" instance=ExtResource("1_dmjg0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84968, 1.3, -2.5)
+scaling_tween_type = 1
+slice_text = Array[String](["ME", "OUT", "NOW", "LET"])
+
+[node name="FirstPersonPlayer" parent="ElevatorController" instance=ExtResource("2_7kjbj")]
+
+[node name="HeadlineDisplay" parent="ElevatorController" instance=ExtResource("12_dg77c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1, -2.5)
+
+[editable path="ElevatorController/Elevator/elevator"]

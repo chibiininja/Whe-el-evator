@@ -1,0 +1,215 @@
+[gd_scene load_steps=22 format=3 uid="uid://dh1tnmq2bsdff"]
+
+[ext_resource type="Script" uid="uid://by3sh1xhrflu5" path="res://npc/malfunction_npc.gd" id="1_4qkvl"]
+[ext_resource type="Script" uid="uid://cyvsle26mhblv" path="res://firstpersonplayer/interactable.gd" id="2_ew7dm"]
+[ext_resource type="Script" uid="uid://cglk15bn08ht1" path="res://npc/blink.gd" id="3_ys41b"]
+[ext_resource type="PackedScene" uid="uid://c31nbjty2lku3" path="res://npc/dialogue_bubble.tscn" id="4_2t7ik"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_v7lw1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldo70"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xxcha"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3i1kj"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.001
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4qkvl"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ew7dm"]
+noise = SubResource("FastNoiseLite_4qkvl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys41b"]
+cull_mode = 2
+albedo_texture = SubResource("NoiseTexture2D_ew7dm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ldo70"]
+size = Vector2(0.25, 0.1)
+
+[sub_resource type="Animation" id="Animation_fnhme"]
+resource_name = "blink"
+length = 0.3333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody3D/eyes/eye:mesh")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("PlaneMesh_ldo70")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody3D/eyes/eye2:mesh")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("PlaneMesh_ldo70")]
+}
+
+[sub_resource type="Animation" id="Animation_o6cys"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody3D/eyes/eye:mesh")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CylinderMesh_3i1kj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody3D/eyes/eye2:mesh")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CylinderMesh_3i1kj")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uamtn"]
+_data = {
+&"blink": SubResource("Animation_fnhme"),
+&"idle": SubResource("Animation_o6cys")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ocili"]
+animation = &"blink"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_phifv"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wuxkc"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_m62cl"]
+graph_offset = Vector2(-455.914, 28.7067)
+nodes/blink/node = SubResource("AnimationNodeAnimation_ocili")
+nodes/blink/position = Vector2(-160, 220)
+nodes/blink_oneshot/node = SubResource("AnimationNodeOneShot_phifv")
+nodes/blink_oneshot/position = Vector2(-20, 60)
+nodes/idle/node = SubResource("AnimationNodeAnimation_wuxkc")
+nodes/idle/position = Vector2(-160, 60)
+node_connections = [&"blink_oneshot", 0, &"idle", &"blink_oneshot", 1, &"blink", &"output", 0, &"blink_oneshot"]
+
+[sub_resource type="Animation" id="Animation_ys41b"]
+resource_name = "noise"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody3D/eyes/eye:surface_material_override/0:albedo_texture:noise:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(250, -551.45, 483.33), Vector3(-466.67, -216.67, -16.67), Vector3(216.92, -650.5, -200), Vector3(800, -233.33, -166.67), Vector3(216.67, -400, -166.67), Vector3(-367.07, 216.67, 566.67), Vector3(316.67, -700, 400), Vector3(250, 583.33, -950), Vector3(400, -266.67, 216.67), Vector3(0, 0, 0), Vector3(250, -551.45, 483.33), Vector3(-466.67, -216.67, -16.67), Vector3(216.92, -650.5, -200), Vector3(800, -233.33, -166.67), Vector3(216.67, -400, -166.67), Vector3(-367.07, 216.67, 566.67), Vector3(316.67, -700, 400), Vector3(250, 583.33, -950), Vector3(400, -266.67, 216.67)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody3D/eyes/eye:surface_material_override/0:albedo_texture:noise:fractal_lacunarity")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [2.0, 3.0, 2.0, 1.0, 2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StaticBody3D/eyes/eye:surface_material_override/0:albedo_texture:noise:fractal_gain")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.5, 0.25, 0.5, 0.75, 0.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gky5e"]
+_data = {
+&"noise": SubResource("Animation_ys41b")
+}
+
+[node name="MalfunctionNPC" type="Node3D"]
+script = ExtResource("1_4qkvl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 5
+collision_mask = 6
+script = ExtResource("2_ew7dm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_v7lw1")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ldo70")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_xxcha")
+
+[node name="eyes" type="Node3D" parent="StaticBody3D"]
+script = ExtResource("3_ys41b")
+
+[node name="eye" type="MeshInstance3D" parent="StaticBody3D/eyes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.225, 1.6625, 0.525)
+mesh = SubResource("CylinderMesh_3i1kj")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ys41b")
+
+[node name="eye2" type="MeshInstance3D" parent="StaticBody3D/eyes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.225, 1.663, 0.525)
+mesh = SubResource("CylinderMesh_3i1kj")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ys41b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StaticBody3D/eyes"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_uamtn")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="StaticBody3D/eyes"]
+root_node = NodePath("../../..")
+tree_root = SubResource("AnimationNodeBlendTree_m62cl")
+anim_player = NodePath("../AnimationPlayer")
+parameters/blink_oneshot/active = false
+parameters/blink_oneshot/internal_active = false
+parameters/blink_oneshot/request = 0
+
+[node name="Timer" type="Timer" parent="StaticBody3D/eyes"]
+
+[node name="NoiseAnimationPlayer" type="AnimationPlayer" parent="StaticBody3D/eyes"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_gky5e")
+}
+autoplay = "noise"
+
+[node name="DialogueBubble" parent="." instance=ExtResource("4_2t7ik")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+visible = false

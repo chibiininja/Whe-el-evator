@@ -1,0 +1,108 @@
+[gd_scene load_steps=12 format=3 uid="uid://ck8nybm8mjduv"]
+
+[ext_resource type="Script" uid="uid://ca6awnlbjlcml" path="res://elevator/display/headline_display.gd" id="1_0kxk1"]
+[ext_resource type="FontFile" uid="uid://blgc5m5e1mio8" path="res://fonts/depixel_font/DePixelKlein.ttf" id="2_4i17f"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4i17f"]
+size = Vector3(4, 0.25, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sowjp"]
+cull_mode = 2
+albedo_color = Color(0.501407, 0.501406, 0.501406, 1)
+metallic = 0.75
+metallic_specular = 0.6
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_0kxk1"]
+size = Vector3(4, 0.025, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wm8qp"]
+size = Vector3(0.025, 0.25, 0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qr2b3"]
+size = Vector3(0.8, 0.25, 0.1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_kagrj"]
+size = Vector2(3.95, 0.2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wm8qp"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51d3v"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_wm8qp")
+metallic = 0.5
+roughness = 0.7
+emission_enabled = true
+emission = Color(0, 0.0666667, 0, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_xiyv6"]
+font = ExtResource("2_4i17f")
+font_size = 44
+font_color = Color(0, 0.721569, 0, 1)
+shadow_size = 0
+
+[node name="HeadlineDisplay" type="Node3D"]
+script = ExtResource("1_0kxk1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_mask = 6
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.025)
+mesh = SubResource("BoxMesh_4i17f")
+surface_material_override/0 = SubResource("StandardMaterial3D_sowjp")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1125, 0.075)
+mesh = SubResource("BoxMesh_0kxk1")
+surface_material_override/0 = SubResource("StandardMaterial3D_sowjp")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1125, 0.075)
+mesh = SubResource("BoxMesh_0kxk1")
+surface_material_override/0 = SubResource("StandardMaterial3D_sowjp")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9875, 2.98023e-08, 0.075)
+mesh = SubResource("BoxMesh_wm8qp")
+surface_material_override/0 = SubResource("StandardMaterial3D_sowjp")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9875, 2.98023e-08, 0.075)
+mesh = SubResource("BoxMesh_wm8qp")
+surface_material_override/0 = SubResource("StandardMaterial3D_sowjp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+shape = SubResource("BoxShape3D_qr2b3")
+debug_fill = false
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+mesh = SubResource("QuadMesh_kagrj")
+skeleton = NodePath("../StaticBody3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_51d3v")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(982, 50)
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14902, 0.14902, 0.14902, 0.890196)
+
+[node name="Label" type="Label" parent="SubViewport/ColorRect"]
+texture_filter = 1
+layout_mode = 0
+offset_top = 2.5
+offset_right = 520.0
+offset_bottom = 47.5
+text = "This message is cool :)"
+label_settings = SubResource("LabelSettings_xiyv6")

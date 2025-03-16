@@ -24,9 +24,10 @@ var pull_power: float = 4.0
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var hand: Marker3D = $Camera3D/hand
+@onready var camera_3d: Camera3D = $Camera3D
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Global.camera = camera_3d
 
 func _process(_delta):
 	# Mouse movement.
@@ -122,3 +123,9 @@ func pick_object():
 func release_object():
 	if picked_object != null:
 		picked_object = null
+
+func reset():
+	global_position = Vector3.ZERO
+	global_rotation = Vector3.ZERO
+	camera.global_rotation_degrees = Vector3.ZERO
+	camera_3d.global_rotation_degrees = Vector3.ZERO

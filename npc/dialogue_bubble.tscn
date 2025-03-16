@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://c31nbjty2lku3"]
+
+[ext_resource type="Script" uid="uid://t117xd8y8hs7" path="res://npc/dialogue_bubble.gd" id="1_fegdu"]
+[ext_resource type="Texture2D" uid="uid://c2nr6ssvj36on" path="res://npc/default.tres" id="2_h28yw"]
+[ext_resource type="FontFile" uid="uid://c8gs5sg82dldv" path="res://fonts/JetBrainsMono-2.304-font/fonts/ttf/JetBrainsMono-Regular.ttf" id="2_nncr0"]
+
+[sub_resource type="Animation" id="Animation_kh24r"]
+resource_name = "static"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:texture:noise:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 0, 0), Vector3(0, 1, 0), Vector3(-1, 0, 0), Vector3(0, -1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ul7y6"]
+_data = {
+&"static": SubResource("Animation_kh24r")
+}
+
+[node name="DialogueBubble" type="Node3D"]
+script = ExtResource("1_fegdu")
+text = ""
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.215, 0)
+billboard = 1
+render_priority = 4
+texture = ExtResource("2_h28yw")
+
+[node name="Label3D" type="Label3D" parent="Sprite3D"]
+billboard = 1
+texture_filter = 0
+render_priority = 5
+outline_render_priority = 2
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(1, 1, 1, 1)
+font = ExtResource("2_nncr0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ul7y6")
+}
+
+[node name="LetterDisplayTimer" type="Timer" parent="."]
+one_shot = true

@@ -18,6 +18,8 @@ func _ready() -> void:
 	for button in buttons:
 		button.interacted.connect(_button_selected)
 		panel.add_collision_exception_with(button.static_body_3d)
+	for index in buttons.size():
+		buttons[index].number = index
 
 func _button_selected(floor_level: int):
 	for button in buttons:
@@ -28,6 +30,10 @@ func reset_choice():
 	for button in buttons:
 		button.pressed = false
 		button.interactable = true
+
+func set_secret():
+	for button in buttons:
+		button.number = 25
 
 func malfunction():
 	malfunctioned = true
@@ -48,3 +54,23 @@ func malfunction():
 	panels[4].apply_central_impulse(Vector3(1,0,1))
 	for panel:Interactable in panels:
 		panel.can_grab = true
+
+func reset():
+	malfunctioned = false
+	reset_choice()
+	for panel:RigidBody3D in panels:
+		panel.freeze = true
+	for panel:Interactable in panels:
+		panel.can_grab = false
+	panels[0].position = Vector3(0,0,0.175)
+	panels[0].rotation = Vector3.ZERO
+	panels[1].position = Vector3(-0.375,0,0)
+	panels[1].rotation = Vector3.ZERO
+	panels[2].position = Vector3(0.375,0,0)
+	panels[2].rotation = Vector3.ZERO
+	panels[3].position = Vector3(0,-0.375,0)
+	panels[3].rotation_degrees = Vector3(0,0,90)
+	panels[4].position = Vector3(0,0.375,0)
+	panels[4].rotation_degrees = Vector3(0,0,-90)
+	for index in buttons.size():
+		buttons[index].number = index

@@ -90,7 +90,7 @@ func _ready()->void:
 	reset() # all the setup is contained in reset
 	rotation_finished.connect(end_check) # check if puzzle is completed when rotation is done
 	for a:int in areas.size():
-		areas[a].on_ray_entered.connect(func(): current_direction=DIRECTIONS[a]; process_direction_input(current_direction); selector.visible = true)
+		areas[a].on_ray_entered.connect(func(): current_direction=DIRECTIONS[a]; process_direction_input(current_direction); if _state == WheelState.AWAITING_SELECTION: selector.visible = true)
 		areas[a].interacted.connect(func(): process_confirm_input(current_direction))
 		areas[a].on_ray_exited.connect(func(): selector.visible = false)
 #endregion

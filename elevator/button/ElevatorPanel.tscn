@@ -54,122 +54,98 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.3, 
 [node name="Button2" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.15, -0.3, 0.2)
-number = 1
 
 [node name="Button3" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.3, 0.2)
-number = 2
 
 [node name="Button4" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.15, -0.3, 0.2)
-number = 3
 
 [node name="Button5" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.3, -0.3, 0.2)
-number = 4
 
 [node name="Button6" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.3, -0.15, 0.2)
-number = 5
 
 [node name="Button7" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.15, -0.15, 0.2)
-number = 6
 
 [node name="Button8" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.15, 0.2)
-number = 7
 
 [node name="Button9" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.15, -0.15, 0.2)
-number = 8
 
 [node name="Button10" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.3, -0.15, 0.2)
-number = 9
 
 [node name="Button11" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.3, 7.45058e-09, 0.2)
-number = 10
 
 [node name="Button12" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.15, 7.45058e-09, 0.2)
-number = 11
 
 [node name="Button13" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 7.45058e-09, 0.2)
-number = 12
 
 [node name="Button14" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.15, 7.45058e-09, 0.2)
-number = 13
 
 [node name="Button15" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.3, 7.45058e-09, 0.2)
-number = 14
 
 [node name="Button16" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.3, 0.15, 0.2)
-number = 15
 
 [node name="Button17" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.15, 0.15, 0.2)
-number = 16
 
 [node name="Button18" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.15, 0.2)
-number = 17
 
 [node name="Button19" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.15, 0.15, 0.2)
-number = 18
 
 [node name="Button20" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.3, 0.15, 0.2)
-number = 19
 
 [node name="Button21" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.3, 0.3, 0.2)
-number = 20
 
 [node name="Button22" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.15, 0.3, 0.2)
-number = 21
 
 [node name="Button23" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.3, 0.2)
-number = 22
 
 [node name="Button24" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.15, 0.3, 0.2)
-number = 23
 
 [node name="Button25" parent="RigidBody3D/Buttons" instance=ExtResource("1_icath")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.3, 0.3, 0.2)
-number = 24
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
@@ -192,7 +168,7 @@ shape = SubResource("BoxShape3D_w3m58")
 
 [node name="RigidBody3D3" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0.375, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 0, 0)
 collision_layer = 4
 collision_mask = 5
 freeze = true
@@ -211,7 +187,7 @@ shape = SubResource("BoxShape3D_w3m58")
 
 [node name="RigidBody3D4" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 0, 0, 1, 0, -0.375, 0)
+transform = Transform3D(7.54979e-08, -1, 0, 1, 7.54979e-08, 0, 0, 0, 1, 0, -0.375, 0)
 collision_layer = 4
 collision_mask = 5
 freeze = true
