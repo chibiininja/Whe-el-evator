@@ -17,6 +17,8 @@ var jumble: bool = false
 var jumble_delta: float = 0
 var jumble_cooldown: float = 0.1
 
+var malfunction: bool = false
+
 func _ready() -> void:
 	result_number.visible = false
 
@@ -41,7 +43,7 @@ func _generate_word(chars, length):
 	return word
 
 func update_target_number(value):
-	target_number.text = str(value) if value is int else value
+	target_number.text = (str(value) if value is int else value) + ("+" if malfunction else "")
 
 func update_current_number(value):
 	current_number.text = str(value) if value is int else value

@@ -36,7 +36,7 @@ const dialogue: Array[String] = [
 	"either you aren't who you think you are",
 	"or you're being influenced by your body",
 	"fucking anomalous wheel elevators", #combine 22
-	"i'll be see you again"
+	"i'll be seeing you again"
 ]
 
 var looking: bool = false

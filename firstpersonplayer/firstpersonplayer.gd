@@ -18,6 +18,8 @@ var _crouch_counter: float = 0
 var picked_object: RigidBody3D
 var pull_power: float = 4.0
 
+var interactables_present: int = 0
+
 @onready var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var ray_cast_3d: RayCast3D = $Camera3D/RayCast3D
 @onready var camera: Node3D = $HeadPosition

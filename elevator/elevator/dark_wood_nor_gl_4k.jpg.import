@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxt8olqo8uge4"
-path.s3tc="res://.godot/imported/dark_wood_nor_gl_4k.jpg-312d7f57f5d54db9aa8340ca2b08c98f.s3tc.ctex"
+path="res://.godot/imported/dark_wood_nor_gl_4k.jpg-312d7f57f5d54db9aa8340ca2b08c98f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://elevator/elevator/dark_wood_nor_gl_4k.jpg"
-dest_files=["res://.godot/imported/dark_wood_nor_gl_4k.jpg-312d7f57f5d54db9aa8340ca2b08c98f.s3tc.ctex"]
+dest_files=["res://.godot/imported/dark_wood_nor_gl_4k.jpg-312d7f57f5d54db9aa8340ca2b08c98f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

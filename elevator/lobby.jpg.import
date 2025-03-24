@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbupw1llpu4i1"
-path.s3tc="res://.godot/imported/lobby.jpg-789cd630cbe0b4d3ed1e83b988d185be.s3tc.ctex"
+path="res://.godot/imported/lobby.jpg-789cd630cbe0b4d3ed1e83b988d185be.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://elevator/lobby.jpg"
-dest_files=["res://.godot/imported/lobby.jpg-789cd630cbe0b4d3ed1e83b988d185be.s3tc.ctex"]
+dest_files=["res://.godot/imported/lobby.jpg-789cd630cbe0b4d3ed1e83b988d185be.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

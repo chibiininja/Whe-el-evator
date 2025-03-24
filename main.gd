@@ -7,6 +7,13 @@ extends Node3D
 @onready var thanks: MarginContainer = $gameover/thanks
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
 
+@onready var resume: Button = $pause/CenterContainer/VBoxContainer/resume
+@onready var quit: Button = $pause/CenterContainer/VBoxContainer/quit
+@onready var pause: Control = $pause
+@onready var quit_2: Button = $gameover/MarginContainer2/quit2
+@onready var toggle_fullscreen: Button = $gameover/MarginContainer3/toggle_fullscreen
+@onready var toggle_fullscreen_2: Button = $pause/MarginContainer3/toggle_fullscreen2
+
 const npc = preload("res://npc/npc.tscn")
 const malfunction_npc = preload("res://npc/malfunction_npc.tscn")
 const crash_npc = preload("res://npc/crash_npc.tscn")
@@ -22,12 +29,25 @@ enum GameState {
 var game_state: GameState = GameState.default
 var npc_count: int = 0
 var current_npc: Node3D
+var playing: bool = false
 
 func _ready() -> void:
 	elevator_controller.ready_for_npc.connect(query_npc)
 	play_again.pressed.connect(reset)
 	world_environment.environment.adjustment_contrast = 1.15
 	world_environment.environment.adjustment_saturation = 1.8
+	resume.pressed.connect(_unpause)
+	quit.pressed.connect(func(): get_tree().quit())
+	quit_2.pressed.connect(func(): get_tree().quit())
+	toggle_fullscreen.pressed.connect(_toggle_fullscreen)
+	toggle_fullscreen_2.pressed.connect(_toggle_fullscreen)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("pause") and playing:
+		if get_tree().paused:
+			_unpause()
+		else:
+			_pause()
 
 func query_npc():
 	if current_npc == null:
@@ -113,11 +133,14 @@ func _reset_crash_wheel():
 	elevator_controller.reset_wheel()
 
 func _end_game():
+	playing = false
 	Global.game_state = Global.GameState.UI
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	gameover.visible = true
 	play_again.visible = true
 	play_again.disabled = false
+	quit_2.visible = true
+	quit_2.disabled = false
 	play_again.text = "play again?"
 	thanks.visible = true
 	game_over_animation_player.play("end_game")
@@ -126,6 +149,9 @@ func _end_game():
 func reset():
 	play_again.disabled = true
 	play_again.visible = false
+	quit_2.visible = false
+	quit_2.disabled = true
+	playing = true
 	world_environment.environment.adjustment_contrast = 1.15
 	world_environment.environment.adjustment_saturation = 1.8
 	game_over_animation_player.play("fade_away")
@@ -141,3 +167,21 @@ func reset():
 
 func _hide_gameover(_anim_name: StringName):
 	gameover.visible = false
+
+func _pause():
+	get_tree().paused = true
+	Global.game_state = Global.GameState.UI
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	pause.visible = true
+
+func _unpause():
+	get_tree().paused = false
+	Global.game_state = Global.GameState.FirstPerson
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	pause.visible = false
+
+func _toggle_fullscreen():
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)

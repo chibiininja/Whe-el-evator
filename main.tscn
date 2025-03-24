@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=4 uid="uid://cg5u7d6x6i1nb"]
+[gd_scene load_steps=125 format=4 uid="uid://cg5u7d6x6i1nb"]
 
 [ext_resource type="PackedScene" uid="uid://bah6ef6ew5q3e" path="res://wheel_3D/wheel_3d.tscn" id="1_dmjg0"]
 [ext_resource type="Script" uid="uid://b7wp0ktkus141" path="res://main.gd" id="1_w48qg"]
@@ -631,6 +631,66 @@ _data = {
 &"open": SubResource("Animation_ycdy4")
 }
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xuqvo"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qsp4k"]
+height = 92
+noise = SubResource("FastNoiseLite_xuqvo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_074og"]
+texture = SubResource("NoiseTexture2D_qsp4k")
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="Animation" id="Animation_kq58d"]
+resource_name = "noise"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("quit:theme_override_styles/normal:texture:noise:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333334, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(250, -551.45, 483.33), Vector3(-466.67, -216.67, -16.67), Vector3(216.92, -650.5, -200), Vector3(800, -233.33, -166.67), Vector3(216.67, -400, -166.67), Vector3(-367.07, 216.67, 566.67), Vector3(316.67, -700, 400), Vector3(250, 583.33, -950), Vector3(400, -266.67, 216.67), Vector3(0, 0, 0), Vector3(250, -551.45, 483.33), Vector3(-466.67, -216.67, -16.67), Vector3(216.92, -650.5, -200), Vector3(800, -233.33, -166.67), Vector3(216.67, -400, -166.67), Vector3(-367.07, 216.67, 566.67), Vector3(316.67, -700, 400), Vector3(250, 583.33, -950), Vector3(400, -266.67, 216.67)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("quit:theme_override_styles/normal:texture:noise:fractal_lacunarity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [2.0, 3.0, 2.0, 1.0, 2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("quit:theme_override_styles/normal:texture:noise:fractal_gain")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.5, 0.25, 0.5, 0.75, 0.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_seu75"]
+_data = {
+&"noise": SubResource("Animation_kq58d")
+}
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_074og"]
 viewport_path = NodePath("logosetup")
 
@@ -641,20 +701,6 @@ outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qsp4k"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2cqfq"]
-frequency = 0.1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yaehf"]
-height = 92
-noise = SubResource("FastNoiseLite_2cqfq")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_074og"]
-texture = SubResource("NoiseTexture2D_yaehf")
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 10.0
 
 [sub_resource type="Animation" id="Animation_82xsv"]
 resource_name = "noise"
@@ -702,45 +748,6 @@ _data = {
 &"noise": SubResource("Animation_82xsv")
 }
 
-[sub_resource type="Animation" id="Animation_ryguw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer/play_again:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("cover:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_getpj"]
 resource_name = "end_game"
 length = 2.0
@@ -759,22 +766,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer/play_again:modulate")
+tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -799,7 +794,6 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1u8w0"]
 _data = {
-&"RESET": SubResource("Animation_ryguw"),
 &"end_game": SubResource("Animation_getpj"),
 &"fade_away": SubResource("Animation_d13ii")
 }
@@ -1895,13 +1889,16 @@ shadow_mesh = SubResource("ArrayMesh_boa4c")
 albedo_color = Color(0.65, 0.2275, 0.1625, 1)
 
 [node name="Main" type="Node3D"]
+process_mode = 3
 script = ExtResource("1_w48qg")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+process_mode = 1
 environment = SubResource("Environment_4v7ut")
 camera_attributes = SubResource("CameraAttributesPractical_xuqvo")
 
 [node name="ElevatorController" type="Node3D" parent="."]
+process_mode = 1
 script = ExtResource("2_yaehf")
 
 [node name="Elevator" type="Node3D" parent="ElevatorController"]
@@ -1952,12 +1949,12 @@ surface_material_override/0 = SubResource("StandardMaterial3D_w48qg")
 
 [node name="lobby" type="MeshInstance3D" parent="ElevatorController/Elevator/elevator"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -2.625)
+visible = false
 mesh = SubResource("QuadMesh_dg77c")
 surface_material_override/0 = SubResource("StandardMaterial3D_vivmo")
 
 [node name="space" type="MeshInstance3D" parent="ElevatorController/Elevator/elevator"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -2.625)
-visible = false
 mesh = SubResource("QuadMesh_dg77c")
 surface_material_override/0 = SubResource("StandardMaterial3D_2cqfq")
 
@@ -2028,7 +2025,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 
 [node name="Wheel3D" parent="ElevatorController" instance=ExtResource("1_dmjg0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84968, 1.3, -2.5)
 scaling_tween_type = 1
-base_numbers = Array[int]([-2, -1, 1, 2])
+base_numbers = Array[int]([-2, 1, 2, -1])
 
 [node name="FirstPersonPlayer" parent="ElevatorController" instance=ExtResource("2_7kjbj")]
 
@@ -2038,7 +2035,90 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1, -2.5)
 [node name="ControlsDisplay" parent="ElevatorController" instance=ExtResource("15_2cqfq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 2.45, -2.5)
 
+[node name="pause" type="Control" parent="."]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="pause/CenterContainer"]
+layout_mode = 2
+
+[node name="resume" type="Button" parent="pause/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("16_qsp4k")
+theme_override_font_sizes/font_size = 44
+theme_override_styles/hover = SubResource("StyleBoxTexture_074og")
+theme_override_styles/normal = SubResource("StyleBoxTexture_074og")
+text = "resume"
+
+[node name="quit" type="Button" parent="pause/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("16_qsp4k")
+theme_override_font_sizes/font_size = 44
+theme_override_styles/hover = SubResource("StyleBoxTexture_074og")
+theme_override_styles/normal = SubResource("StyleBoxTexture_074og")
+text = "quit"
+
+[node name="NoiseAnimationPlayer" type="AnimationPlayer" parent="pause/CenterContainer/VBoxContainer"]
+libraries = {
+&"": SubResource("AnimationLibrary_seu75")
+}
+autoplay = "noise"
+
+[node name="MarginContainer3" type="MarginContainer" parent="pause"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -430.0
+offset_top = -70.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(430, 70)
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="toggle_fullscreen2" type="Button" parent="pause/MarginContainer3"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("16_qsp4k")
+theme_override_font_sizes/font_size = 44
+theme_override_styles/hover = SubResource("StyleBoxTexture_074og")
+theme_override_styles/normal = SubResource("StyleBoxTexture_074og")
+text = "toggle fullscreen
+"
+
 [node name="gameover" type="Control" parent="."]
+process_mode = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -2093,6 +2173,7 @@ texture = ExtResource("17_xuqvo")
 expand_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="gameover"]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -2124,6 +2205,64 @@ libraries = {
 }
 autoplay = "noise"
 
+[node name="MarginContainer2" type="MarginContainer" parent="gameover"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -45.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 25
+
+[node name="quit2" type="Button" parent="gameover/MarginContainer2"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("16_qsp4k")
+theme_override_font_sizes/font_size = 44
+theme_override_styles/hover = SubResource("StyleBoxTexture_074og")
+theme_override_styles/normal = SubResource("StyleBoxTexture_074og")
+text = "quit
+"
+
+[node name="MarginContainer3" type="MarginContainer" parent="gameover"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -430.0
+offset_top = -70.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(430, 70)
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="toggle_fullscreen" type="Button" parent="gameover/MarginContainer3"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("16_qsp4k")
+theme_override_font_sizes/font_size = 44
+theme_override_styles/hover = SubResource("StyleBoxTexture_074og")
+theme_override_styles/normal = SubResource("StyleBoxTexture_074og")
+text = "toggle fullscreen
+"
+
 [node name="cover" type="ColorRect" parent="gameover"]
 layout_mode = 1
 anchors_preset = 15
@@ -2140,6 +2279,7 @@ libraries = {
 }
 
 [node name="logosetup" type="SubViewport" parent="."]
+process_mode = 1
 own_world_3d = true
 size = Vector2i(1280, 720)
 

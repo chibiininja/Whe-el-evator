@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqrhr36vstdb"
-path.s3tc="res://.godot/imported/rock_01_rough_4k.jpg-a118f32064b4fa6aa7d43da45c327173.s3tc.ctex"
+path="res://.godot/imported/rock_01_rough_4k.jpg-a118f32064b4fa6aa7d43da45c327173.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://elevator/shaft/rock_01_rough_4k.jpg"
-dest_files=["res://.godot/imported/rock_01_rough_4k.jpg-a118f32064b4fa6aa7d43da45c327173.s3tc.ctex"]
+dest_files=["res://.godot/imported/rock_01_rough_4k.jpg-a118f32064b4fa6aa7d43da45c327173.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

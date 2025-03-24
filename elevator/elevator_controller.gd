@@ -72,6 +72,7 @@ func malfunction():
 	game_state = GameState.malfunction
 	elevator_shaft.animation_player.speed_scale = 2.0
 	elevator_panel.malfunction()
+	elevator_display.malfunction = true
 	elevator_display.display_base(true)
 	elevator_display.display_slice(true)
 	elevator_display.display_x(true)
@@ -92,6 +93,7 @@ func crash():
 	wheel_3d.new_dir_selected.disconnect(_base_slice_display)
 	wheel_3d.new_dir_chosen.connect(_respond_to_executioner)
 	elevator_display.jumble = true
+	elevator_display.malfunction = false
 	elevator_display.update_target_number("-inf")
 	elevator_display.update_base_number("YES")
 	elevator_display.update_slice_number("NO")
